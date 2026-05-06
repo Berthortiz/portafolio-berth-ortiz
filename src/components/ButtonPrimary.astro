@@ -13,14 +13,14 @@ const {
     title,
     link,
     additionalClass = false,
-    bg = "var(--color-brand-secundary)",
+    bg = "var(--color-brand)",
 } = Astro.props;
 ---
 
 <!-- btn-dinamico -->
 <a
     style=`background-color:${bg} ;`
-    class={`buttomPrimary w-fit flex h-fit  ${!additionalClass ? "px-2 py-2 " : additionalClass}`}
+    class={`buttomPrimary w-fit flex h-fit  ${!additionalClass ? " px-2 py-2 " : additionalClass}`}
     class:list={{}}
     href={link}
 >
@@ -32,13 +32,13 @@ const {
         display: flex;
         border-radius: 4px;
 
-        color: rgb(255, 255, 255);
+        /* color: rgb(255, 255, 255); */
         --color-gradient: #f34503;
 
-        /* background-color: var(--color-brand-secundary); */
+        /* background-color: var(--color-brand); */
         /* background-image: linear-gradient(
             to right,
-            var(--color-brand-secundary),
+            var(--color-brand),
             var(--color-gradient)
         ); */
     }

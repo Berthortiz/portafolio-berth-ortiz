@@ -1,22 +1,24 @@
 ---
+import { Icon } from "astro-icon/components";
+
 // src/pages/servicios.astro
 const services = [
     {
-        icon: "🌐",
-        title: "Creación de Páginas web",
+        icon: "web-icon",
+        title: "Portafolio Web",
         description:
-            "Creación de sitios web informativos y portafolios profesionales 💼. Perfecto para mostrar tu trabajo...",
+            "Creación de sitios web informativos y portafolios profesionales 💼. Perfecto para o mostrar tu trabajo.",
         btnUrl: "#",
     },
     {
-        icon: "🚀",
-        title: "Optimización SEO",
+        icon: "code-icon",
+        title: "Página web a medida",
         description:
-            "Mejora el posicionamiento de tu web en Google y reduce los tiempos de carga al máximo.",
+            "Desarrollo exclusivo, priorizando la velocidad y mostras funciones específicas de tu negocio. Perfecto para Inmobiliarias, Academias Online, etc.",
         btnUrl: "#",
     },
     {
-        icon: "🛍️",
+        icon: "web-icon",
         title: "Tiendas Online",
         description:
             "Lleva tu negocio al siguiente nivel con una tienda virtual completa y pagos seguros.",
@@ -25,7 +27,7 @@ const services = [
 ];
 ---
 
-<section class="relative bg-black overflow-hidden py-16 lg:py-24">
+<section class="relative overflow-hidden py-16 lg:py-24">
     <div
         class="stardust absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-7deg] z-0 scale-x-[2.5] scale-y-[4.2] rounded-full mask-radial-gradient h-56 md:h-80 lg:h-96 w-full pointer-events-none opacity-80"
     >
@@ -37,9 +39,15 @@ const services = [
         {
             services.map((service) => (
                 <div class="px-10 py-14 rounded-lg border border-zinc-500/20 backdrop-blur-3xl bg-zinc-500/5 flex flex-col items-center text-center gap-4 hover:border-zinc-500/40 transition-all duration-300 group">
-                    <p class="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                        {service.icon}
-                    </p>
+                    <span class="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <Icon
+                            name={
+                                service.icon === "" ? "star" : `${service.icon}`
+                            }
+                            size={50}
+                            class="text-(--color-brand-secundary) w-full h-auto"
+                        />
+                    </span>
                     <h3 class="text-xl font-semibold text-white">
                         {service.title}
                     </h3>
@@ -100,7 +108,7 @@ const services = [
         mask-repeat: no-repeat;
     }
 
-    .stardust {
+    /* .stardust {
         background: radial-gradient(
             circle at center,
             rgba(59, 130, 246, 0.6) 0%,
@@ -109,5 +117,5 @@ const services = [
             transparent 100%
         );
         filter: blur(20px);
-    }
+    } */
 </style>

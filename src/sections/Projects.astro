@@ -54,14 +54,15 @@ const projects = [
 
 <article
   id="proyects"
-  class="lg:max-w-7xl mx-auto bg-black text-white px-6 py-18 lg:pt-16"
+  class="lg:max-w-7xl mx-auto text-white px-6 py-18 lg:pt-16"
 >
-  <h2 class="text-2xl font-black lg:pb-2 md:text-3xl lg:text-4xl text-center ">
-    Proyectos Web que He Creado
-  </h2>
-  <p class="text-center text-gray-400 pb-2 md:pb-2 lg:text-2xl lg:pb-18">
-    Estas páginas han sido creadas por mí para algunos de mis clientes
-  </p>
+  <!-- <h2 class="text-2xl font-black lg:pb-10 md:text-3xl lg:text-4xl text-center">
+    <span class="gradiente-title"> Proyectos</span>
+    Web que he creado
+  </h2> -->
+  <!-- <p class="text-center text-gray-400 pb-2 md:pb-2 lg:text-2xl lg:pb-18">
+    Páginas web que he creado para algunos de mis clientes
+  </p> -->
 
   <div>
     {
@@ -135,5 +136,21 @@ const projects = [
 
   .btn-project:nth-child(2):hover {
     box-shadow: 0 1px 0 0 rgb(255, 255, 255);
+  }
+
+  .gradiente-title {
+    --color-gradient: #03cff3;
+    background-image: linear-gradient(
+      to right,
+      var(--color-brand),
+      var(--color-gradient)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradiente-title {
+    color: #0090f7;
+    /* fallback */
   }
 </style>

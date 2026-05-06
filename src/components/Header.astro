@@ -1,37 +1,39 @@
 ---
+import ButtonPrimary from "./ButtonPrimary.astro";
+
 // Enlaces del menú (puedes personalizarlos)
 const links = [
-    { href: "/", label: "INICIO" },
-    { href: "/2024", label: "Cursos" },
-    { href: "#", label: "certificaciones" },
-    { href: "#", label: "nosotros" },
+    { href: "/", label: "Inicio" },
+    { href: "#", label: "Cursos" },
+    { href: "#", label: "Certificaciones" },
+    { href: "#", label: "Sombre Mi" },
 ];
 ---
 
-<header class="header-position black top-0 lg:max-w-7xl m-auto px-6 py-2 z-20">
+<header class="header-position black top-0 lg:max-w-7xl m-auto px-6 py-4 z-20">
     <div class="relative flex justify-between px-6 md:w-full items-center">
         <div>
             <a href="/" class="font-bold">
-                <img class="w-22" src="/images/logo-raep.svg" alt="logo" /></a
+                <img class="w-8" src="/images/logo-berth.svg" alt="logo" /></a
             >
         </div>
 
         <!-- Desktop nav -->
         <nav
-            class="hidden md:flex gap-6 items-center"
+            class="hidden md:flex gap-6 items-center text-blue-50"
             role="navigation"
             aria-label="Principal"
         >
             {
                 links.map((link) => (
-                    <a class="uppercase text-sm" href={link.href}>
+                    <a class="text-sm" href={link.href}>
                         {link.label}
                     </a>
                 ))
             }
         </nav>
 
-        <button class="hidden md:inline-flex">Cotizar</button>
+        <ButtonPrimary title="Contacto" link="#" additionalClass="px-3 py-1" />
 
         <!-- Botón hamburguesa -->
         <button
@@ -87,14 +89,13 @@ const links = [
     >
         {
             links.map((link) => (
-                <a class="text-orange-50 block" href={link.href}>
+                <a class="text-blue-50 block" href={link.href}>
                     {link.label}
                 </a>
             ))
         }
-        <button class="mt-2 bg-orange-500 text-white py-2 px-4 rounded w-full"
-            >Cotizar</button
-        >
+
+        <ButtonPrimary title="Contacto" link="#" additionalClass="px-2 py-2" />
     </nav>
 </header>
 
