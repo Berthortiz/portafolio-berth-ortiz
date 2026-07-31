@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import ButtonPrimary from "./ButtonPrimary.astro";
+import logo from "../assets/img/logo-berth.svg";
 
 const links = [
     { href: "/", label: "Inicio" },
@@ -17,7 +18,7 @@ const links = [
     <div class="relative flex justify-between px-6 md:w-full items-center">
         <div>
             <a href="/" class="font-bold">
-                <img class="w-10" src="/images/logo-berth.svg" alt="logo" />
+                <img class="w-10" src={logo.src} alt="logo" />
             </a>
         </div>
 
@@ -77,7 +78,7 @@ const links = [
     >
         <div class="flex justify-between items-center w-full">
             <a href="/" class="font-bold">
-                <img class="w-10" src="/images/logo-berth.svg" alt="logo" />
+                <img class="w-10" src={logo.src} alt="logo" />
             </a>
 
             <button

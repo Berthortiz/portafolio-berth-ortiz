@@ -1,5 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
+import olivaresImg from "../assets/img/olivares.png";
+import mariaImg from "../assets/img/maria.png";
+import fgcImg from "../assets/img/FGC.png";
 
 const testimonials = [
   {
@@ -7,14 +10,14 @@ const testimonials = [
       "¡Gran experiencia de trabajo! Creó una página web moderna, limpia y adaptada a celulares de forma súper rápida. El soporte y la atención al detalle fueron de diez.",
     name: "Jeaustin Olivares",
     job: "Especialista en Marketing ",
-    srcImg: "/src/assets/img/olivares.png",
+    srcImg: olivaresImg,
   },
   {
     description:
       "Como realtor, mi página web es mi carta de presentación. El diseño es sumamente elegante, moderno y adaptado perfectamente a celulares, El proceso de trabajo fue sumamente profesional.",
     name: "Maria Martell",
     job: "Agente Inmobiliario",
-    srcImg: "/src/assets/img/maria.png",
+    srcImg: mariaImg,
   },
 
   {
@@ -22,7 +25,7 @@ const testimonials = [
       "Para mi negocio de consultoría, proyectar confianza y seriedad lo es todo. Diseñó una página web impecable que explica mis servicios con claridad y permite que mis prospectos agenden citas.",
     name: "Consulting FGC",
     job: "Asesor financiero",
-    srcImg: "/src/assets/img/FGC.png",
+    srcImg: fgcImg,
   },
 ];
 
@@ -99,7 +102,7 @@ const schemaData = {
                 <figcaption class="flex gap-4 mt-3">
                   <div class="w-12 h-12 bg-indigo-200 rounded-full overflow-hidden">
                     <img
-                      src={testimonial.srcImg}
+                      src={testimonial.srcImg.src}
                       alt={`Foto de ${testimonial.name}`}
                       class="w-full h-full object-cover"
                       loading="lazy"

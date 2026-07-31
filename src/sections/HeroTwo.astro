@@ -1,11 +1,13 @@
 ---
-import bgHeroImg from "/public/images/raep-background-hero.png";
 import Picture from "astro/components/Picture.astro";
 import ButtonPrimary from "../components/ButtonPrimary.astro";
+import heroBg from "../assets/img/ImgExtras/hero_bg_10_1.png";
+import heroMask from "../assets/img/ImgExtras/hero_10_bg_mask.png";
 ---
 
 <section
     class="HeroTwo w-full min-h-200 md:items-center relative text-gray-600 body-font"
+    style={`background-image: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)), url(${heroBg.src}); -webkit-mask-image: url(${heroMask.src}); -webkit-mask-repeat: no-repeat; -webkit-mask-size: 100% 100%; background-size: cover; background-position: center;`}
 >
     <!-- Fondo con imagen y overlay -->
     <!-- <div class="absolute left-0 right-0">
@@ -63,7 +65,7 @@ import ButtonPrimary from "../components/ButtonPrimary.astro";
         </div>
         <div class="md:w-2/5 w-5/6">
             <Picture
-                src="/public/images/img-hero.png"
+                src={heroBg.src}
                 alt="testimonial"
                 width={50}
                 height={50}
@@ -98,12 +100,12 @@ import ButtonPrimary from "../components/ButtonPrimary.astro";
                 rgba(0, 0, 0, var(--bg-transparent)),
                 rgba(0, 0, 0, var(--bg-transparent))
             ),
-            url("/public/images/ImgExtras/hero_bg_10_1.png");
+            url("/images/ImgExtras/hero_bg_10_1.png");
 
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        -webkit-mask-image: url("/public/images/ImgExtras/hero_10_bg_mask.png");
+        -webkit-mask-image: url("/images/ImgExtras/hero_10_bg_mask.png");
         -webkit-mask-repeat: no-repeat;
         -webkit-mask-size: 100% 100%;
         /* height: ; */

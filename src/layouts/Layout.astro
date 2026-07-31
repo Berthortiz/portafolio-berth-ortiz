@@ -1,6 +1,8 @@
 ---
 import Header from "../components/Header.astro";
+import logo from "../assets/img/logo-berth.svg";
 import Footer from "../sections/Footer.astro";
+import "../css/style.css";
 interface Props {
 	title: string;
 	description?: string;
@@ -21,12 +23,8 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link
-			rel="icon"
-			type="image/svg+xml"
-			href="/public/images/logo-berth.svg"
-		/>
-		<link rel="stylesheet" href="/src/css/style.css" />
+		<link rel="icon" type="image/svg+xml" href={logo} />
+		<!-- <link rel="stylesheet" href="/src/css/style.css" /> -->
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>

@@ -1,13 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
 import Picture from "astro/components/Picture.astro";
+import fgcImg from "../assets/img/projects/fgcconsulting.png";
+import mariaImg from "../assets/img/projects/maria-martel-realtor.png";
+import k26Img from "../assets/img/projects/k26.png";
 
 const projects = [
   {
     id: 1,
     name_proyect: "Consulting FGC",
     sub_title: "Landing Page Corporativa ",
-    image: "/src/assets/img/projects/fgcconsulting.png",
+    image: fgcImg,
     description:
       "Una consultora en Florida que facilita la integración y el crecimiento de los recién llegados a Estados Unidos. Ofrece servicios clave como asesoría en trámites migratorios, creación y registro de empresas con obtención de EIN, orientación financiera para mejorar el crédito e inversión, y la gestión efectiva para recuperar fondos excedentes de propiedades subastadas.",
     technologies: [
@@ -37,7 +40,7 @@ const projects = [
     id: 2,
     name_proyect: "Maria A. Martel",
     sub_title: "Landing Page Corporativa ",
-    image: "/src/assets/img/projects/maria-martel-realtor.png",
+    image: mariaImg,
     description:
       "Esta web presenta a María Alejandra Martell, Realtor® bilingüe en Florida (Miami, Orlando y Tampa). Ofrece servicios de compra, venta e inversión inmobiliaria para la comunidad latina. Su método de cinco pasos guía desde el análisis financiero hasta la entrega de llaves, complementado con planes de marketing personalizados y una guía gratuita para inversores.",
     technologies: [
@@ -68,7 +71,7 @@ const projects = [
     id: 3,
     name_proyect: "K26 Arquitectura",
     sub_title: "Portafolio web ",
-    image: "/src/assets/img/projects/k26.png",
+    image: k26Img,
     description:
       "K26 es un estudio de arquitectura y construcción en Costa Rica que destaca por su modelo integrado Design-Build (Diseño y Construcción). Con más de una década de trayectoria, la firma liderada por Diego Núñez fusiona la creatividad visual con el rigor técnico estructural para crear residencias y espacios comerciales modernos, funcionales y de alta calidad.",
     technologies: [
@@ -130,7 +133,7 @@ const projects = [
   <!--?xml version="1.0" standalone="no"?-->
   <img
     class="self-center"
-    src="/public/portfolio-icon.png"
+    src="/portfolio-icon.png"
     width="50"
     height="50"
     alt=""
@@ -159,7 +162,7 @@ const projects = [
         <section class="flex flex-col pb-12 lg:w-full lg:gap-8 border border-zinc-500/20 backdrop-blur-3xl bg-zinc-500/5 ">
           <div class="w-full flex justify-center">
             <Picture
-              src={item.image}
+              src={item.image.src}
               alt="testimonial"
               width={50}
               height={50}

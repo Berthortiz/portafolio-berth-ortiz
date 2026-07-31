@@ -1,10 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
 import ButtonPrimary from "../components/ButtonPrimary.astro";
-import bgHeroImg from "/public/images/raep-background-hero.png";
 import Picture from "astro/components/Picture.astro";
-
-const ImgAbout = "/public/images/pexels-arina-krasnikova-5950092.jpg";
+import ImgAbout from "../assets/img/pexels-arina-krasnikova-5950092.jpg";
 ---
 
 <section
@@ -67,7 +65,7 @@ const ImgAbout = "/public/images/pexels-arina-krasnikova-5950092.jpg";
         </div>
         <div class="md:w-2/5 w-5/6">
             <Picture
-                src={`${ImgAbout}`}
+                src={ImgAbout.src}
                 alt="testimonial"
                 width={50}
                 height={50}
@@ -113,7 +111,7 @@ const ImgAbout = "/public/images/pexels-arina-krasnikova-5950092.jpg";
                 rgba(255, 255, 255, 0.8) 30%,
                 rgba(0, 0, 0, 0.1) 70%
             ),
-            url("/public/images/bg-2.png");
+            url("/images/bg-2.png");
         background-size: cover;
         background-position: center;
         height: fit-content;

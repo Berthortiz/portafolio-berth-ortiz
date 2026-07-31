@@ -1,41 +1,42 @@
 ---
 import { Icon } from "astro-icon/components";
 import ButtonPrimary from "../components/ButtonPrimary.astro";
+import serviceImg from "../assets/img/service-img/IMG1SERVICE1.jpg";
 
 // icon = string ""
 const services = [
   {
     title: "Manejo de riesgos en espacios confinados",
     description: `Diseñamos sitios web responsivos y optimizados que reflejan la esencia de tu marca.`,
-    urlImage: "/public/images/service-img/IMG1SERVICE1.jpg",
+    urlImage: serviceImg,
   },
   {
     title: "Mantenimiento para sitios seguros y actualizados",
     description: `Nos encargamos de mantener tu web protegida, y lista para crecer junto a tu negocio.`,
-    urlImage: "/public/images/service-img/IMG1SERVICE1.jpg",
+    urlImage: serviceImg,
   },
   {
     title: "Proyectos web a medida según tus objetivos",
     description: `Creamos soluciones personalizadas que se adaptan a tus necesidades y potencian tu estrategia digital.`,
 
-    urlImage: "/public/images/service-img/IMG1SERVICE1.jpg",
+    urlImage: serviceImg,
   },
   {
     title: "Marketing digital estratégico para atraer clientes reales",
     description: `Campañas de SEO, redes sociales y publicidad online diseñadas para aumentar tu visibilidad y generar tráfico cualificado.`,
-    urlImage: "/public/images/service-img/IMG1SERVICE1.jpg",
+    urlImage: serviceImg,
   },
   {
     title: "Marketing digital estratégico para atraer clientes reales",
     description: `Campañas de SEO, redes sociales y publicidad online diseñadas para aumentar tu visibilidad y generar tráfico cualificado.
 `,
-    urlImage: "/public/images/service-img/IMG1SERVICE1.jpg",
+    urlImage: serviceImg,
   },
   {
     title: "Marketing digital estratégico para atraer clientes reales",
     description: `Campañas de SEO, redes sociales y publicidad online diseñadas para aumentar tu visibilidad y generar tráfico cualificado.
 `,
-    urlImage: "/public/images/service-img/IMG1SERVICE1.jpg",
+    urlImage: serviceImg,
   },
 ];
 ---
@@ -72,7 +73,7 @@ const services = [
       services.map((service) => {
         return (
           <section
-            style={`background-image: url(${service.urlImage}) ;`}
+            style={`background-image: url(${service.urlImage.src}) ;`}
             class=" raep-service min-h-130 relative bg-cover bg-center flex flex-col justify-end gap-2 p-6  
             rounded-2xl 
             md:p-10
