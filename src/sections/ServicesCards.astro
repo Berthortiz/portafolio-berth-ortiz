@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import ButtonPrimary from "../components/ButtonPrimary.astro";
 
 // src/pages/servicios.astro
 const services = [
@@ -7,38 +8,41 @@ const services = [
         icon: "web-icon",
         title: "Portafolio Web",
         description:
-            "Creación de sitios web informativos y portafolios profesionales 💼. Perfecto para o mostrar tu trabajo.",
-        btnUrl: "#",
+            "Creación de sitios web informativos y portafolios profesionales 💼. Perfecto para mostrar tu trabajo.",
     },
     {
         icon: "code-icon",
         title: "Página web a medida",
         description:
             "Desarrollo exclusivo, priorizando la velocidad y mostras funciones específicas de tu negocio. Perfecto para Inmobiliarias, Academias Online, etc.",
-        btnUrl: "#",
     },
     {
-        icon: "web-icon",
+        icon: "shop",
         title: "Tiendas Online",
         description:
             "Lleva tu negocio al siguiente nivel con una tienda virtual completa y pagos seguros.",
-        btnUrl: "#",
     },
 ];
 ---
 
-<section class="relative overflow-hidden py-16 lg:py-24">
+<section class="relative overflow-hidden lg:py-24">
     <div
         class="stardust absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-7deg] z-0 scale-x-[2.5] scale-y-[4.2] rounded-full mask-radial-gradient h-56 md:h-80 lg:h-96 w-full pointer-events-none opacity-80"
     >
     </div>
 
+    <h2
+        class="title-font text-center text-3xl sm:text-4xl md:text-4xl lg:text-4xl mb-4 pt-5 px-3 pb-10 font-bold text-(--color-brand-secundary)"
+    >
+        <span class="gradiente-title-g">¡Creamos </span>la Páginas web que
+        necesitas!
+    </h2>
     <div
         class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 lg:max-w-7xl mx-auto relative z-10"
     >
         {
             services.map((service) => (
-                <div class="px-10 py-14 rounded-lg border border-zinc-500/20 backdrop-blur-3xl bg-zinc-500/5 flex flex-col items-center text-center gap-4 hover:border-zinc-500/40 transition-all duration-300 group">
+                <div class="px-8 py-10 md:px-10 md:py-14 rounded-lg border border-zinc-500/20 backdrop-blur-3xl bg-zinc-500/5 flex flex-col items-center text-center gap-4 hover:border-zinc-500/40 transition-all duration-300 group">
                     <span class="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300">
                         <Icon
                             name={
@@ -54,12 +58,19 @@ const services = [
                     <p class="text-gray-400 text-[15px] leading-relaxed">
                         {service.description}
                     </p>
-                    <a
-                        href={service.btnUrl}
-                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors mt-auto font-medium"
+                    <ButtonPrimary
+                        title="Contactar"
+                        link="https://wa.link/bqgy6d"
+                        additionalClass="px-4 py-2 text-white items-center"
                     >
-                        Contactar
-                    </a>
+                        {" "}
+                        <Icon
+                            name="whatsapp-solid"
+                            slot="before-icon"
+                            size={20}
+                            class=""
+                        />{" "}
+                    </ButtonPrimary>
                 </div>
             ))
         }

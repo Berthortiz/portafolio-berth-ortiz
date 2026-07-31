@@ -4,31 +4,25 @@ import { Icon } from "astro-icon/components";
 const testimonials = [
   {
     description:
-      "Excepteur sint occaecat cupidatat, Ut enim ad minim veniam, ipsum dolor sit amet",
-    name: "User Name 1",
-    job: "UX Designer",
-    srcImg: "/images/avatars/uifaces-human-avatar (10).jpg",
+      "¡Gran experiencia de trabajo! Creó una página web moderna, limpia y adaptada a celulares de forma súper rápida. El soporte y la atención al detalle fueron de diez.",
+    name: "Jeaustin Olivares",
+    job: "Especialista en Marketing ",
+    srcImg: "/src/assets/img/olivares.png",
   },
   {
     description:
-      "Excepteur sint occaecat cupidatat, Ut enim ad minim veniam, ipsum dolor sit amet",
-    name: "User Name 2",
-    job: "Product Manager",
-    srcImg: "/images/avatars/uifaces-human-avatar (7).jpg",
+      "Como realtor, mi página web es mi carta de presentación. El diseño es sumamente elegante, moderno y adaptado perfectamente a celulares, El proceso de trabajo fue sumamente profesional.",
+    name: "Maria Martell",
+    job: "Agente Inmobiliario",
+    srcImg: "/src/assets/img/maria.png",
   },
+
   {
     description:
-      "Excepteur sint occaecat cupidatat, Ut enim ad minim veniam, ipsum dolor sit amet",
-    name: "User Name 3",
-    job: "Developer",
-    srcImg: "/images/avatars/uifaces-human-avatar (8).jpg",
-  },
-  {
-    description:
-      "Excepteur sint occaecat cupidatat, Ut enim ad minim veniam, ipsum dolor sit amet",
-    name: "User Name 4",
-    job: "CEO",
-    srcImg: "/images/avatars/uifaces-human-avatar (5).jpg",
+      "Para mi negocio de consultoría, proyectar confianza y seriedad lo es todo. Diseñó una página web impecable que explica mis servicios con claridad y permite que mis prospectos agenden citas.",
+    name: "Consulting FGC",
+    job: "Asesor financiero",
+    srcImg: "/src/assets/img/FGC.png",
   },
 ];
 
@@ -69,18 +63,14 @@ const schemaData = {
     <header
       class="w-full flex flex-col md:justify-center md:items-center text-center mb-16 md:mb-0"
     >
-      <span
-        class="text-[1.1em] px-3 py-1 text-white font-bold"
-      >
-        Testimonios
-      </span>
+      <span class="text-4xl px-3 py-1 text-white font-bold"> Testimonios </span>
       <h2
         class="title-font sm:text-4xl lg:text-5xl text-3xl mb-4 pt-5 font-medium text-(--color-brand-secundary)"
       >
         Vea lo que dicen mis <span class="gradiente-title-g">clientes</span>
       </h2>
       <p
-        class="md:max-w-[75ch] mb-8 leading-relaxed font-normal text-[1.1em] text-(--color-text-primary)"
+        class="md:max-w-[75ch] mb-1 md:mb-8 leading-relaxed font-normal text-[1.1em] text-(--color-text-primary)"
       >
         He tenido la suerte de trabajar con personas y empresas increíbles. Más
         que clientes, los considero compañeros de proyecto, y estas son sus
@@ -88,12 +78,12 @@ const schemaData = {
       </p>
     </header>
 
-    <div class="swiper mySwiper w-full relative">
+    <div class="swiper mySwiper w-full relative h-[310px]">
       <div class="swiper-wrapper">
         {
           testimonials.map((testimonial) => (
-            <div class="swiper-slide h-auto">
-              <figure class="flex bg-[#D5D9DA10] flex-col gap-4 p-8 rounded-2xl shadow-sm h-full text-left ">
+            <div class="swiper-slide">
+              <figure class="flex bg-[#D5D9DA10] justify-between flex-col gap-4 p-8 rounded-2xl shadow-sm text-left ">
                 <div class="flex text-[#4e86ff]" aria-label="5 estrellas">
                   <Icon name="star" size={20} />
                   <Icon name="star" size={20} />
@@ -106,7 +96,7 @@ const schemaData = {
                   <p>"{testimonial.description}"</p>
                 </blockquote>
 
-                <figcaption class="flex gap-4 mt-auto">
+                <figcaption class="flex gap-4 mt-3">
                   <div class="w-12 h-12 bg-indigo-200 rounded-full overflow-hidden">
                     <img
                       src={testimonial.srcImg}
@@ -167,7 +157,7 @@ const schemaData = {
       },
       breakpoints: {
         640: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
+        1024: { slidesPerView: 2 },
       },
     });
   };

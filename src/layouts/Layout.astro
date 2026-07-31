@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import Footer from "../sections/Footer.astro";
 interface Props {
 	title: string;
 	description?: string;
@@ -33,9 +34,12 @@ const {
 	<body>
 		<Header />
 		<slot />
+		<Footer />
+		foot
 	</body>
 </html>
 
+<script></script>
 <style is:global>
 	:root {
 		--color-brand: #0051ff; /* color principal de la marca */
@@ -51,6 +55,7 @@ const {
 		--color-error: #dc2626; /* mensajes de error */
 		--color-success: #16a34a; /* mensajes de éxito */
 	}
+
 	html,
 	body {
 		margin: 0;
@@ -58,6 +63,16 @@ const {
 		background-color: var(--color-bg);
 		/* min-height: 200vh; */
 		font-family: "Segoe UI";
+		transition: width 1s ease;
+
+		/* scrollbar-gutter: stable; */
+		/* overflow: hidden; */
+	}
+	h1,
+	h2,
+	h3,
+	h4 {
+		color: #ffffff;
 	}
 
 	.gradiente-title-g {

@@ -1,33 +1,35 @@
 ---
+import { Icon } from "astro-icon/components";
 import ButtonPrimary from "./ButtonPrimary.astro";
 import bgHeroImg from "/public/images/raep-background-hero.png";
 import Picture from "astro/components/Picture.astro";
+
 ---
 
-<section class="hero w-full md:items-center relative text-gray-600 body-font">
+<section class="hero w-full md:items-center flex flex-col justify-between relative text-gray-600 body-font">
     <!-- Fondo con imagen y overlay -->
     <!-- <div class="absolute left-0 right-0">
         <img src={bgHeroImg.src} alt="Fondo hero" class="w-full" />
         </div> -->
 
-    <div id="overlay" class="absolute inset-0 indent-5"></div>
+    <!-- <div id="overlay" class="absolute inset-0 indent-5"></div> -->
 
     <!-- t -->
     <div
-        class="flex lg:max-w-7xl mx-auto px-4 md:px-14 py-14 items-center justify-center relative z-10"
+        class="flex lg:max-w-7xl mx-auto md:px-14 pt-1 md:pt-14 items-center justify-center relative z-10"
     >
         <div
-            class="md:w-4/5 flex flex-col justify-center items-center md:text-left mb-16 md:mb-0"
+            class="md:w-4/5 flex md:pt-1 flex-col justify-center items-center md:text-left mb-0 md:mb-0 p-6"
         >
           
 
             <h1
                 class="title-font
-                leading-10 lg:leading-10
+                leading-10 md:leading-10
             
                 font-bold
                 text-center
-                text-3xl sm:text-4xl md:text-4xl lg:text-4xl
+                text-4xl sm:text-4xl md:text-4xl lg:text-4xl
                 mb-4
                 text-gray-100"
             >
@@ -36,30 +38,58 @@ import Picture from "astro/components/Picture.astro";
 
  </span>  de tu negocio para que empiece a vender hoy
             </h1>
-            <p class="mb-8 leading-relaxed text-gray-200 md:text-[1em] w-[70ch] text-center">
+            <p class="mb-8 leading-relaxed text-gray-200 md:text-[1em] lg:w-[70ch] text-center">
               "Diseñamos sitios web modernos y estratégicos que convierten visitantes en clientes. Con tecnología actual, copy persuasivo y un enfoque en resultados, tu negocio tendrá la presencia digital que necesita para crecer desde el primer día."
             </p>
-            <div class="flex justify-center gap-3 lg:items-center">
-                <ButtonPrimary
-                    title="Solicitar presupuesto"
-                    link="#"
-                    additionalClass="px-5  py-2 text-white"
-                />
+            <div class="w-full flex flex-col md:flex-row justify-center gap-4 lg:items-center border-amber-50 ">
+           
+
+  <ButtonPrimary  title="Cotizar Mi Web"
+                    link="https://wa.link/bqgy6d"
+                    additionalClass="w-full md:w-fit px-4 py-2 text-white justify-center items-center text-[1.2em] border-2 border-[color:var(--color-brand)]"
+                > <Icon name="whatsapp-solid" slot="before-icon" size={20} class="" /> </ButtonPrimary>
+                
+
  <ButtonPrimary
                     title="Ver Portafolio"
-                    class:list="text-gray-900"
-                    link="#"
-                    additionalClass="px-5 py-2 text-gray-600"
-                    bg="white"
-                />
-               
+                    class:list=""
+                    link="#proyects"
+                    additionalClass="w-full md:w-fit items-center justify-center text-[1.2em] px-5 py-2 border-2 border-[color:var(--color-text-primary)] text-(--color-text-primary) hover:border-[color:var(--color-brand-secundary)] hover:text-(--color-brand-secundary)"
+                    bg="transparent"
+                /> 
+                
             </div>
         </div>
        
     </div>
+
+
+
 </section>
 
 <style>
+
+#arrow-down-id::before {
+    
+    content: "Ver Portafolio";
+    text-align: center;
+    color:rgb(200, 200, 200);
+    position: absolute;
+    z-index: 3;
+    width: 200px;
+    /* height: 30px; */
+    /* background-color: red; */
+    transform: translateX( calc(-50% + 20px  ) );
+    top: 0px;
+    left: 0;
+
+
+    }
+    #arrow-down-id {
+        margin-top: 30px;
+        position:relative;
+    }
+
     #overlay {
         backdrop-filter: blur(5px);
         padding: 20px;

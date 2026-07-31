@@ -50,67 +50,77 @@ import Contact from "./Contact.astro";
                 </h2>
                 <p
                     class="title-font
-                leading-5 lg:leading-6
+                leading-8 lg:leading-6
                 
                 font-normal
                 text-3xl sm:text-4xl md:text-4xl lg:text-2xl
                 mb-4
                 text-(--color-brand-secundary)"
                 >
-                    Puedes ponete en contacto por medio de estas opciones:
+                    Puedes ponerte en contacto por medio de estas opciones:
                 </p>
-                <address class="flex gap-4 pt-8">
+                <address class="flex flex-col md:flex-row gap-6 pt-8 w-full">
                     <div
-                        class="gap-x-6 grid grid-cols-3 grid-rows-2 gap-2 text-(--color-brand-secundary) py-2 rounded-2xl"
+                        class="flex items-center flex-col md:flex-row gap-4 py-2 rounded-2xl w-full md:w-1/2"
                     >
-                        <span
-                            class="col-span-1 row-span-2 place-items-center flex items-center text-4xl w-13 lg:w-10 xl:w-14"
+                        <div
+                            class="shrink-0 flex items-center justify-center w-12 h-12 lg:w-10 lg:h-10 xl:w-14 xl:h-14 text-(--color-brand-secundary)"
                         >
                             <Icon
                                 name="whatsapp-solid"
                                 size={50}
-                                class="text-(--color-brand-secundary) w-full h-auto"
+                                class="w-full h-auto"
                             />
-                        </span>
-                        <h2
-                            class="col-span-2 row-span-1 text-2xl font-medium lg:text-lg xl:text-2xl"
-                        >
-                            WhatsApp
-                        </h2>
-                        <a
-                            class="col-span-2 row-span-2 text-(--color-text-primary) text-base lg:text-sm"
-                        >
-                            921-119-22-09
-                        </a>
+                        </div>
+
+                        <div class="flex flex-col min-w-0">
+                            <h2
+                                class="text-xl font-medium text-(--color-brand-secundary) lg:text-base xl:text-xl leading-tight"
+                            >
+                                WhatsApp
+                            </h2>
+                            <a
+                                href="[https://wa.me/529211192209](https://wa.me/529211192209)"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-(--color-text-primary) text-base lg:text-xs xl:text-sm font-normal hover:underline break-all"
+                            >
+                                921-119-22-09
+                            </a>
+                        </div>
                     </div>
 
                     <div
-                        class="grid grid-cols-3 grid-rows-2 gap-2 text-(--color-brand-secundary) py-2 rounded-2xl"
+                        class="flex items-center flex-col md:flex-row gap-4 py-2 rounded-2xl w-full md:w-1/2"
                     >
-                        <span
-                            class="col-span-1 row-span-2 place-items-center flex items-center text-4xl w-13 lg:w-10 xl:w-14"
+                        <div
+                            class="shrink-0 flex items-center justify-center w-12 h-12 lg:w-10 lg:h-10 xl:w-14 xl:h-14 text-(--color-brand-secundary)"
                         >
                             <Icon
                                 name="e-mail"
                                 size={50}
-                                class="text-(--color-brand-secundary) w-full h-auto"
+                                class="w-full h-auto"
                             />
-                        </span>
-                        <h2
-                            class="col-span-2 row-span-1 text-2xl font-medium lg:text-lg xl:text-2xl"
-                        >
-                            Correo
-                        </h2>
-                        <a
-                            class="col-span-2 row-span-2 text-(--color-text-primary) text-base lg:text-sm"
-                        >
-                            berthortizweb@gmail.com
-                        </a>
+                        </div>
+
+                        <div class="flex flex-col min-w-0">
+                            <h2
+                                class="text-xl font-medium text-(--color-brand-secundary) lg:text-base xl:text-xl leading-tight"
+                            >
+                                Correo
+                            </h2>
+                            <a
+                                href="mailto:berthortizweb@gmail.com"
+                                class="text-(--color-text-primary) text-base lg:text-xs xl:text-sm font-normal hover:underline break-all"
+                            >
+                                berthortizweb@gmail.com
+                            </a>
+                        </div>
                     </div>
                 </address>
             </div>
         </div>
-        <div class="md:w-2/5 w-5/6">
+        <div class="md:w-2/5 w-5/6 flex self-center">
             <Contact />
         </div>
     </div>

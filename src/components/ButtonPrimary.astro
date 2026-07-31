@@ -6,9 +6,6 @@ interface Props {
     bg?: string;
 }
 
-// <div class="">
-//   </div>
-
 const {
     title,
     link,
@@ -17,19 +14,21 @@ const {
 } = Astro.props;
 ---
 
-<!-- btn-dinamico -->
 <a
     style=`background-color:${bg} ;`
-    class={`buttomPrimary w-fit flex h-fit  ${!additionalClass ? " px-2 py-2 " : additionalClass}`}
+    class={`buttomPrimary w-fit flex gap-1.5 h-fit  ${!additionalClass ? " px-2 py-2 " : additionalClass}`}
     class:list={{}}
     href={link}
+    rel="noopener noreferrer"
+    aria-label={`Contactar por WhatsApp`}
 >
+    <slot name="before-icon" />
     {title}
 </a>
 
 <style>
     .buttomPrimary {
-        display: flex;
+        /* display: flex; */
         border-radius: 4px;
 
         /* color: rgb(255, 255, 255); */
