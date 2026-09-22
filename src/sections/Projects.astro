@@ -162,10 +162,8 @@ const projects = [
         <section class="flex flex-col pb-12 lg:w-full lg:gap-8 border border-zinc-500/20 backdrop-blur-3xl bg-zinc-500/5 ">
           <div class="w-full flex justify-center">
             <Picture
-              src={item.image.src}
-              alt="testimonial"
-              width={50}
-              height={50}
+              src={item.image}
+              alt={`Vista previa del proyecto ${item.name_proyect}`}
               formats={["webp"]}
               quality={80}
               loading="lazy"
