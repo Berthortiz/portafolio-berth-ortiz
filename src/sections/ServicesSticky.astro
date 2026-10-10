@@ -4,36 +4,36 @@ import ButtonPrimary from "../components/ButtonPrimary.astro";
 
 const services = [
   {
-    icon: "web-two",
-    title: "Desarrollo Web",
-    description: `Construcción de sitios web dinámicos y adaptables (responsive), hechos a la medida de los objetivos y requisitos únicos de tu negocio.`,
+    icon: "brush-3",
+    title: "Diseño profesional",
+    description: `Un diseño moderno y alineado a tu identidad que transmite autoridad y credibilidad desde el primer segundo.`,
   },
+
   {
     icon: "date",
-    title: "Copywriting (Textos Persuasivos)",
-    description: `Creación de textos que comunica eficazmente tu mensaje y genera interacción.`,
+    title: "100 % adaptada a móviles",
+    description: `Optimizada para smartphones para ofrecer una experiencia rápida y fluida donde navegan la mayoría de tus clientes. `,
   },
   {
     icon: "shield",
-    title: "Protección Blindada",
+    title: "Protección blindada",
     description: `Implementamos protocolos de seguridad avanzados para proteger tus datos y los de tus clientes, generando confianza en cada transacción.`,
   },
   {
     icon: "tools",
-    title: "Soporte y Mantenimiento",
-    description: `"No te dejamos solo. Nos encargamos de que tu sitio esté siempre actualizado, seguro y funcionando al 100% mientras tú te concentras en tu negocio.`,
-  },
-
-  {
-    icon: "brush-3",
-    title: "Identidad y Branding",
-    description: `Creación de identidades de marca distintivas que conectan con tu audiencia y dejan una impresión duradera.`,
+    title: "Soporte y mantenimiento",
+    description: `No te dejamos solo. Nos encargamos de que tu sitio esté siempre actualizado, seguro y funcionando al 100% mientras tú te concentras en tu negocio.`,
   },
 
   {
     icon: "up-arrow",
-    title: "SEO y Marketing",
-    description: `Atracción de tráfico cualificado a tu sitio web mediante tácticas estratégicas de marketing y posicionamiento en buscadores.`,
+    title: "SEO",
+    description: `Optimizamos elementos básicos de tu sitio, como títulos, descripciones y estructura, para ayudar a los buscadores a entender e indexar mejor tu contenido.`,
+  },
+  {
+    icon: "date",
+    title: "Copywriting (textos persuasivos)",
+    description: `Creación de textos que comunican tu mensaje con claridad y generan interacción.`,
   },
 ];
 ---
@@ -46,7 +46,7 @@ const services = [
   >
     <!-- col-1 -->
     <div
-      class="self-start md:sticky top-15 xl:top-40 flex flex-col md:w-2/4 md:justify-start md:items-start md:text-left mb-16 md:mb-0 items-start text-start"
+      class="self-start md:sticky top-15 xl:top-40 flex flex-col md:w-2/4 md:justify-start pt-20 md:items-start md:text-left mb-16 md:mb-0 items-start text-start"
     >
       <span
         class="btn-item-service text-[.8em]
@@ -56,13 +56,12 @@ const services = [
          border-[0.1rem]
          font-light"
       >
-        • Puedo ayudarte con
+        • Tu ventana a internet
       </span>
       <h2
-        class="title-font text-3xl sm:text-4xl md:text-4xl lg:text-4xl mb-4 pt-5 font-bold text-(--color-brand-secundary)"
+        class="title-font text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 pt-5 font-bold text-(--color-brand-secundary)"
       >
-        <span class="gradiente-title-g">Servicios</span> de Páginas web: Diseñadas
-        para Vender
+        Lo que tu <span class="gradiente-title-"> página</span> web necesita
       </h2>
 
       <!-- bg-(--color-brand-secundary) -->
@@ -78,7 +77,7 @@ const services = [
 
       <div class="flex justify-center">
         <ButtonPrimary
-          title="Ayudame a crear mi Página"
+          title="Ayúdame a crear mi página"
           link="https://wa.link/bqgy6d"
           additionalClass="px-4 py-1.5 text-white"
         />
@@ -90,14 +89,17 @@ const services = [
         services.map((service) => {
           return (
             <section class="flex flex-col gap-2 bg-[#D5D9DA10] text-(--color-brand-secundary) p-8 rounded-2xl">
-              <span class="text-4xl w-13 lg:w-10 xl:w-14 ">
+              <span class=" text-4xl w-13 lg:w-10 xl:w-14 ">
                 <Icon
                   name={service.icon === "" ? "star" : `${service.icon}`}
                   size={50}
                   class="text-(--color-brand-secundary) w-full h-auto"
                 />
               </span>
-              <h2 class="text-2xl font-medium lg:text-lg xl:text-2xl ">
+              <h2
+                id="title-card-sticky"
+                class=" text-2xl font-medium lg:text-lg xl:text-2xl"
+              >
                 {service.title}
               </h2>
               <p class="text-(--color-text-primary) text-base lg:text-sm">
@@ -112,6 +114,9 @@ const services = [
 </section>
 
 <style>
+  #title-card-sticky {
+    color:;
+  }
   .btn-item-service {
     color: var(--color-text-primary);
     border: 1px solid

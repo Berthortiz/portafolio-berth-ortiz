@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import ButtonPrimary from "../components/ButtonPrimary.astro";
-import Picture from "astro/components/Picture.astro";
+import { Picture } from "astro:assets";
 import ImgAbout from "../assets/img/pexels-arina-krasnikova-5950092.jpg";
 ---
 
@@ -32,46 +32,45 @@ import ImgAbout from "../assets/img/pexels-arina-krasnikova-5950092.jpg";
                 mb-4
                 text-(--color-secundary)"
             >
-                <p
-                    class="title-font
-                leading-5 lg:leading-6
-                
-                font-normal
-                text-3xl sm:text-4xl md:text-4xl lg:text-2xl
-                mb-4
-                text-(--color-brand-secundary)"
-                >
-                    Hola, soy Berth Ortiz.
-                </p>
-
-                <span class="gradiente-title-g"> Desarrollos </span> web moderno y
-                optimizado. <br />
+                Hola, soy <span class="gradiente-title-g">Berth Ortiz</span>,
+                desarrollador web.
             </h2>
 
             <p
-                class="mb-8 leading-relaxed text-(--color-text-primary) md:text-[.9em]"
+                class="mb-4 leading-relaxed text-(--color-text-primary) md:text-[.9em]"
             >
-                Para mí, construir una página web es mucho más que escribir
-                código; es un proceso de luthería digital. Al igual que al
-                tallar la madera para un instrumento, cada píxel y cada función
-                deben estar en el lugar exacto para que el resultado final sea
-                armonioso y eficiente. <br /><br /> Me especializo en crear ecosistemas
-                web modernos utilizando tecnologías de alto rendimiento como Astro,
-                React y Tailwind CSS. Mi enfoque no es solo que tu sitio se vea bien,
-                sino que vuele. En un mundo donde cada segundo de carga cuenta, me
-                dedico a entregar plataformas optimizadas, limpias y diseñadas para
-                ofrecer una experiencia de usuario impecable.
+                Llevo 3 años creando sitios web para emprendedores y negocios.
+                Me gusta conocer cada proyecto y convertir sus objetivos en una
+                página clara, rápida y fácil de usar, cuidando tanto el diseño
+                como el rendimiento.
+            </p>
+            <p
+                class="mb-4 leading-relaxed text-(--color-text-primary) md:text-[.9em]"
+            >
+                Algunos de mis éxitos incluyen colaborar con agentes
+                inmobiliarios para el desarrollo de las primeras webs en el
+                mercado de Florida, Estados Unidos. Aunque la competencia es
+                alta, fue un gran avance en mi trayectoria profesional
+            </p>
+            <p
+                class="mb-4 leading-relaxed text-(--color-text-primary) md:text-[.9em]"
+            >
+                A través de mi canal de YouTube, comparto contenido enfocado en
+                desarrollo web. Mi objetivo es apoyar a la comunidad
+                compartiendo conocimientos prácticos y herramientas
             </p>
         </div>
-        <div class="md:w-2/5 w-5/6">
+        <div class="md:w-2/5 w-5/6 h-100 flex items-end">
             <Picture
                 src={ImgAbout}
                 alt="Berth Ortiz trabajando en desarrollo web"
                 formats={["webp"]}
+                widths={[320, 480, 640, 960]}
+                sizes="(max-width: 767px) 83vw, 40vw"
                 quality={80}
                 loading="lazy"
                 decoding="async"
-                class="w-full object-contain rounded-2xl"
+                class="h-100 object-cover rounded-2xl"
             />
         </div>
     </div>

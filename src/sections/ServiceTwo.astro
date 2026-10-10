@@ -1,0 +1,85 @@
+---
+// src/components/QueIncluye.astro
+
+const caracteristicas = [
+    "Diseño personalizado con los colores y el logotipo de tu negocio",
+    "Espacio para presentar tus servicios o productos con fotografías",
+    "Accesos directos a WhatsApp y llamadas telefónicas",
+    "Mapa con la dirección y el horario de atención de tu negocio",
+    "Vínculos a tus perfiles en redes sociales",
+    "Compatible con celulares, tabletas y computadoras",
+    "Te acompañamos en la publicación de tu sitio web",
+];
+---
+
+<section id="incluye" class="relative py-20 px-6 max-w-6xl mx-auto">
+    <div
+        class="contenedor incluye-grid grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch"
+    >
+        <div class="space-y-8">
+            <div>
+                <span
+                    class="inline-block text-xs font-semibold uppercase tracking-widest text-[#06a1d9] bg-blue-950/80 px-3 py-1 rounded-full mb-4"
+                >
+                    Todo lo que necesitas
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+                    ¿Qué incluye tu página web?
+                </h2>
+                <p class="text-zinc-400 text-base md:text-lg">
+                    Tu negocio tendrá lo necesario para proyectar una imagen
+                    profesional desde el inicio.
+                </p>
+            </div>
+
+            <ul class="space-y-4">
+                {
+                    caracteristicas.map((item) => (
+                        <li class="flex items-start gap-2 ">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/10 border border-blue-300 flex items-center justify-center text-blue-400 mt-0.5">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-4 h-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </div>
+                            <span class="text-zinc-200 text-base leading-snug">
+                                {item}
+                            </span>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+
+        <figure
+            class="relative h-full min-h-[320px] overflow-hidden rounded-xl border border-white/10"
+        >
+            <img
+                src="/images/service-img/incluye-web-design.jpg"
+                alt="Espacio de trabajo con monitores que muestran diseños de sitios web"
+                class="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+            />
+            <figcaption
+                class="absolute bottom-3 right-3 rounded bg-black/60 px-2 py-1 text-xs text-white/80"
+            >
+                Foto de <a
+                    href="https://unsplash.com/photos/XyaFyD87o6E"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="underline underline-offset-2"
+                    >Tran Mau Tri Tam en Unsplash</a
+                >
+            </figcaption>
+        </figure>
+    </div>
+</section>

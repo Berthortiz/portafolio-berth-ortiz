@@ -24,7 +24,13 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={logo} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="icon" type="image/svg+xml" href={logo.src} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
@@ -39,18 +45,14 @@ const {
 <script></script>
 <style is:global>
 	:root {
-		--color-brand: #0051ff; /* color principal de la marca */
+		--color-brand: #008cff; /* color principal de la marca */
 		--color-brand-two: #03cff3;
-		--color-brand-secundary: #f3f4f6; /* tarjetas, secciones */
-		--color-text-primary: #99a1af; /* texto principal */
-		--color-secundary: #f3f4f6;
-		--color-text-black: #0d0f13;
+		--color-brand-secundary: #e7effa; /* tarjetas, secciones */
+		--color-text-primary: #a5b4cb; /* texto principal */
+		--color-secundary: #dce8f5;
+		--color-text-black: #09111f;
 
-		--color-highlight: #f59e0b; /* para resaltar botones o links */
-		--color-bg: #0d0f13; /* fondo */
-
-		--color-error: #dc2626; /* mensajes de error */
-		--color-success: #16a34a; /* mensajes de éxito */
+		--color-bg: #080e1c; /* fondo */
 	}
 
 	html,
@@ -59,7 +61,8 @@ const {
 		width: 100%;
 		background-color: var(--color-bg);
 		/* min-height: 200vh; */
-		font-family: "Segoe UI";
+		font-family: "Inter", sans-serif;
+		font-optical-sizing: auto;
 		transition: width 1s ease;
 
 		/* scrollbar-gutter: stable; */
@@ -69,22 +72,20 @@ const {
 	h2,
 	h3,
 	h4 {
+		font-family: "Inter", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
 		color: #ffffff;
 	}
 
 	.gradiente-title-g {
-		--color-gradient: #03cff3;
+		color: var(--color-brand);
 		background-image: linear-gradient(
 			to right,
 			var(--color-brand),
-			var(--color-gradient)
+			var(--color-brand-two)
 		);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
-	}
-
-	.gradiente-title-g {
-		color: #0090f7;
-		/* fallback */
 	}
 </style>
