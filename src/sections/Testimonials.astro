@@ -75,13 +75,13 @@ const schemaData = {
       <p
         class="md:max-w-[75ch] mb-1 md:mb-8 leading-relaxed font-normal text-[1.1em] text-(--color-text-primary)"
       >
-        He tenido la suerte de trabajar con personas y empresas increíbles. Más
-        que clientes, los considero compañeros de proyecto, y estas son sus
+        He tenido la oportunidad de trabajar con personas y empresas increíbles.
+        Más que clientes, los considero compañeros de proyecto, y estas son sus
         palabras sobre el camino que recorrimos juntos.
       </p>
     </header>
 
-    <div class="swiper mySwiper w-full relative h-[310px]">
+    <div class="swiper testimonials-swiper w-full relative h-[310px]">
       <div class="swiper-wrapper">
         {
           testimonials.map((testimonial) => (
@@ -121,9 +121,6 @@ const schemaData = {
         }
       </div>
 
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-
       <div class="swiper-pagination !relative mt-5"></div>
     </div>
   </div>
@@ -131,41 +128,76 @@ const schemaData = {
 
 <script>
   import Swiper from "swiper";
-  import { Pagination, Autoplay, FreeMode, Navigation } from "swiper/modules";
+  import { Pagination, Autoplay } from "swiper/modules";
 
   // Estilos necesarios
   import "swiper/css";
   import "swiper/css/pagination";
-  import "swiper/css/navigation";
+  const instances = new WeakMap<HTMLElement, Swiper>();
 
-  // Inicialización
-  const initSwiper = () => {
-    new Swiper(".mySwiper", {
-      modules: [Pagination, Navigation, Autoplay, FreeMode],
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      speed: 1200,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      breakpoints: {
-        640: { slidesPerView: 2 },
-        1024: { slidesPerView: 2 },
-      },
-    });
+  const initTestimonialSwiper = () => {
+    document
+      .querySelectorAll<HTMLElement>(".testimonials-swiper")
+      .forEach((element) => {
+        if (instances.has(element)) return;
+
+        const pagination =
+          element.querySelector<HTMLElement>(".swiper-pagination");
+
+        if (!pagination) return;
+
+        const swiper = new Swiper(element, {
+          modules: [Pagination, Autoplay],
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: true,
+          speed: 1200,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: pagination,
+            clickable: true,
+          },
+          breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 2 },
+          },
+        });
+
+        instances.set(element, swiper);
+      });
   };
 
-  initSwiper();
+  const destroyTestimonialSwiper = () => {
+    document
+      .querySelectorAll<HTMLElement>(".testimonials-swiper")
+      .forEach((element) => {
+        instances.get(element)?.destroy(true, true);
+        instances.delete(element);
+      });
+  };
+
+  const resumeTestimonialAutoplay = () => {
+    if (document.visibilityState !== "visible") return;
+
+    document
+      .querySelectorAll<HTMLElement>(".testimonials-swiper")
+      .forEach((element) => {
+        const swiper = instances.get(element);
+        if (swiper?.autoplay.running && swiper.autoplay.paused) {
+          swiper.autoplay.resume();
+        }
+      });
+  };
+
+  initTestimonialSwiper();
+  document.addEventListener("astro:page-load", initTestimonialSwiper);
+  document.addEventListener("astro:before-swap", destroyTestimonialSwiper);
+  document.addEventListener("visibilitychange", resumeTestimonialAutoplay);
+  window.addEventListener("focus", resumeTestimonialAutoplay);
+  window.addEventListener("pageshow", resumeTestimonialAutoplay);
 </script>
 
 <style>
@@ -180,25 +212,6 @@ const schemaData = {
     border-radius: 5px;
   }
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    background: oklab(100% 0 -0.00011 / 0.115);
-    top: 40% !important;
-    /* left: % !important; */
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-
-    border-radius: 50%;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  }
-
-  .swiper-button-prev {
-    left: 10px !important;
-  }
-  .swiper-button-next {
-    right: 10px !important;
-  }
   .swiper-pagination-bullet {
     background: aliceblue !important;
   }

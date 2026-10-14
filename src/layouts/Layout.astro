@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import SEO from "../components/SEO.astro";
 import logo from "../assets/img/logo-berth.svg";
 import Footer from "../sections/Footer.astro";
 import "../css/style.css";
@@ -7,20 +8,22 @@ import "../css/style.css";
 interface Props {
 	title: string;
 	description?: string;
-	// canonical?: string;
-	// robots?: string;
+	image?: string;
+	canonical?: string;
+	type?: string;
 }
 
 const {
 	title = "Berth Ortiz",
 	description = "Desarrollo de Páginas Web para Negocios y Empresas | Berth Ortiz",
-	// canonical,
-	// robots,
+	image,
+	canonical,
+	type,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -32,8 +35,13 @@ const {
 		/>
 		<link rel="icon" type="image/svg+xml" href={logo.src} />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<title>{title}</title>
+		<SEO
+			title={title}
+			description={description}
+			image={image}
+			canonical={canonical}
+			type={type}
+		/>
 	</head>
 	<body>
 		<Header />

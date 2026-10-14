@@ -1,0 +1,71 @@
+---
+import berthCover from "../assets/img/berth-portada.png";
+
+interface Props {
+    title: string;
+    description: string;
+    image?: string;
+    canonical?: string;
+    type?: string;
+}
+
+const {
+    title,
+    description,
+    image = berthCover.src,
+    canonical,
+    type = "website",
+} = Astro.props;
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const websiteUrl = new URL("/", siteUrl).href;
+const personId = `${websiteUrl}#person`;
+const websiteId = `${websiteUrl}#website`;
+const canonicalUrl = canonical
+    ? new URL(canonical, siteUrl).href
+    : new URL(Astro.url.pathname, siteUrl).href;
+const imageUrl = new URL(image, siteUrl).href;
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Person",
+            "@id": personId,
+            name: "Berth Ortiz",
+            url: websiteUrl,
+            jobTitle: "Desarrollador web",
+            description:
+                "Desarrollador web que crea sitios para emprendedores y negocios, cuidando el diseño, el rendimiento y la facilidad de uso.",
+            sameAs: [
+                "https://youtube.com/@berthortiz?si=BBZQJ3pbdA6iKWga",
+                "https://www.instagram.com/berth_ortiz/",
+            ],
+        },
+        {
+            "@type": "WebSite",
+            "@id": websiteId,
+            url: websiteUrl,
+            name: "Berth Ortiz",
+            inLanguage: "es",
+            publisher: { "@id": personId },
+        },
+    ],
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
