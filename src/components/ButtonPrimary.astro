@@ -12,11 +12,16 @@ const {
     additionalClass = false,
     bg = "var(--color-brand)",
 } = Astro.props;
+
+const tieneColor = bg !== "transparent";
+const estilo = tieneColor
+    ? `background-image: linear-gradient(90deg, var(--color-brand), var(--color-brand-two), #f441a5, var(--color-brand)); background-size: 400%;`
+    : `background-color:${bg} ;`;
 ---
 
 <a
-    style=`background-color:${bg} ;`
-    class={`buttomPrimary w-fit flex gap-1.5 h-fit  ${!additionalClass ? " px-2 py-2 " : additionalClass}`}
+    style={estilo}
+    class={`buttomPrimary w-fit flex gap-1.5 h-fit ${!additionalClass ? " px-2 py-2 " : additionalClass} ${tieneColor ? "glow" : ""}`}
     class:list={{}}
     href={link}
     rel="noopener noreferrer"
@@ -28,17 +33,48 @@ const {
 
 <style>
     .buttomPrimary {
-        /* display: flex; */
         border-radius: 4px;
+    }
 
-        /* color: rgb(255, 255, 255); */
-        --color-gradient: #f34503;
+    .glow {
+        position: relative;
+        z-index: 1;
+        user-select: none;
+        cursor: pointer;
+        border: none;
+    }
 
-        /* background-color: var(--color-brand); */
-        /* background-image: linear-gradient(
-            to right,
-            var(--color-brand),
-            var(--color-gradient)
-        ); */
+    .glow::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        bottom: -5px;
+        left: -5px;
+        z-index: -1;
+        background: linear-gradient(90deg, var(--color-brand), var(--color-brand-two), #f441a5, var(--color-brand));
+        background-size: 400%;
+        border-radius: 9px;
+        opacity: 0;
+        transition: 0.5s;
+    }
+
+    .glow:hover {
+        animation: flujo-btn 8s linear infinite;
+    }
+
+    .glow:hover::before {
+        filter: blur(20px);
+        opacity: 1;
+        animation: flujo-btn 8s linear infinite;
+    }
+
+    @keyframes flujo-btn {
+        0% {
+            background-position: 0%;
+        }
+        100% {
+            background-position: 400%;
+        }
     }
 </style>

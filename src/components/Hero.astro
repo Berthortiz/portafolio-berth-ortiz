@@ -5,7 +5,11 @@ import Picture from "astro/components/Picture.astro";
 
 ---
 
-<section class="hero w-full md:items-center flex flex-col justify-between relative text-gray-600 body-font">
+<script is:inline>
+    document.documentElement.classList.add("hero-js");
+</script>
+
+<section class="hero w-full md:items-center flex flex-col justify-between relative text-gray-600 body-font" data-hero>
     <!-- Fondo con imagen y overlay -->
     <!-- <div class="absolute left-0 right-0">
         <img src={bgHeroImg.src} alt="Fondo hero" class="w-full" />
@@ -18,13 +22,14 @@ import Picture from "astro/components/Picture.astro";
         class="flex lg:max-w-7xl mx-auto md:px-14 pt-1 md:pt-14 items-center justify-center relative z-10"
     >
         <div
+            data-hero-copy
             class="md:w-4/5 flex md:pt-1 flex-col justify-center items-center md:text-left mb-0 md:mb-0 p-6"
         >
           
-
             <h1
+                data-hero-title
                 class="title-font
-                leading-14 md:leading-10 lg:leading-16 xl:leading-18
+                leading-14 md:leading-10 lg:leading-16 xl:leading-19
             
                 font-bold
                 text-center
@@ -32,28 +37,25 @@ import Picture from "astro/components/Picture.astro";
                 mb-4
                 text-gray-100"
             >
-                Creamos la 
-                <span class="gradiente-title-hero"> Página Web
-
- </span>  de tu negocio
+                Creamos la
+                <span class="gradiente-title-hero">Página Web</span>
+                de tu negocio
             </h1>
             <p class="mb-8 leading-relaxed text-gray-200 md:text-[1em] lg:w-[70ch] text-center">
-              "Diseñamos sitios web modernos y estratégicos que convierten visitantes en clientes. Con tecnología actual, copy persuasivo y un enfoque en resultados, tu negocio tendrá la presencia digital que necesita para crecer desde el primer día."
+              Diseñamos sitios web modernos y estratégicos que convierten visitantes en clientes. Con tecnología actual,tu negocio tendrá la presencia digital que necesita para crecer desde el primer día.
             </p>
             <div class="w-full flex flex-col md:flex-row justify-center gap-4 lg:items-center border-amber-50 ">
            
-
   <ButtonPrimary  title="Cotizar Mi Web"
                     link="https://wa.link/bqgy6d"
                     additionalClass="w-full md:w-fit px-4 py-2 text-white justify-center items-center text-[1.2em] border-2 border-[color:var(--color-brand)]"
                 > <Icon name="whatsapp-solid" slot="before-icon" size={20} class="" /> </ButtonPrimary>
                 
-
  <ButtonPrimary
                     title="Ver Portafolio"
                     class:list=""
                     link="#proyects"
-                    additionalClass="w-full md:w-fit items-center justify-center text-[1.2em] px-5 py-2 border-2 border-[color:var(--color-text-primary)] text-(--color-text-primary) hover:border-[color:var(--color-brand-secundary)] hover:text-(--color-brand-secundary)"
+                    additionalClass="w-full md:w-fit items-center justify-center text-[1.2em] px-5 py-2 text-whitegit  ring-1 ring-inset ring-(--color-brand-white) text-(--color-brand-white) hover:border-white"
                     bg="transparent"
                 /> 
                 
@@ -61,8 +63,6 @@ import Picture from "astro/components/Picture.astro";
         </div>
        
     </div>
-
-
 
 </section>
 
@@ -81,7 +81,6 @@ import Picture from "astro/components/Picture.astro";
     transform: translateX( calc(-50% + 20px  ) );
     top: 0px;
     left: 0;
-
 
     }
     #arrow-down-id {
@@ -138,7 +137,77 @@ import Picture from "astro/components/Picture.astro";
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        will-change: transform, opacity;
     }
 
-  
+    [data-hero-copy] {
+        will-change: transform, opacity, filter;
+    }
+
+    :global(html.hero-js) [data-hero-title] {
+        opacity: 0;
+    }
+
 </style>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { SplitText } from "gsap/SplitText";
+
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    const hero = document.querySelector("[data-hero]");
+    const heroCopy = hero?.querySelector("[data-hero-copy]");
+    const heroTitle = hero?.querySelector("[data-hero-title]");
+    const gradient = hero?.querySelector(".gradiente-title-hero");
+
+    const puedeAnimar = hero && heroCopy && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (puedeAnimar) {
+        const disolver = gsap.timeline({
+            scrollTrigger: { trigger: hero, start: "top+=70 top", end: "bottom top", scrub: 1 },
+        });
+        disolver.to(heroCopy, { filter: "blur(14px)", opacity: 0, y: -50, ease: "none" }, 0);
+
+        const heroMedia = hero.querySelector("[data-hero-media]");
+        if (heroMedia) disolver.to(heroMedia, { filter: "blur(8px)", opacity: 0.1, scale: 0.85, ease: "none" }, 0);
+
+        if (heroTitle) {
+            heroTitle.style.setProperty("opacity", "1");
+
+            const { words } = SplitText.create(heroTitle, { type: "words" });
+
+            if (gradient) {
+                const [c1, c2] = getComputedStyle(gradient).backgroundImage.match(/#[0-9a-f]{3,8}|rgba?\([^)]+\)/gi) ?? [];
+                const palabras = words.filter((w) => gradient.contains(w) && w.textContent.trim());
+
+                if (c1 && c2 && palabras.length) {
+                    palabras.forEach((w) => {
+                        w.style.backgroundImage = `linear-gradient(90deg, ${c1}, ${c2}, ${c1})`;
+                        w.style.backgroundSize = "400% 100%";
+                        w.style.webkitBackgroundClip = "text";
+                        w.style.color = "transparent";
+                        w.style.webkitTextFillColor = "transparent";
+                        w.style.paddingBottom = "0.15em";
+                        w.style.marginBottom = "-0.15em";
+                    });
+                    gradient.style.backgroundImage = "none";
+
+                    gsap.set(palabras, { backgroundPosition: (i) => `${i * (100 / palabras.length / 3)}% 0` });
+
+                    gsap.to(palabras, {
+                        backgroundPosition: "+=400%",
+                        duration: 8,
+                        ease: "none",
+                        repeat: -1,
+                    });
+                }
+            }
+
+            gsap.from(words, { opacity: 0, yPercent: 60, duration: 0.6, stagger: 0.09, ease: "back.out(1.4)" });
+        }
+    } else {
+        heroTitle?.style.setProperty("opacity", "1");
+    }
+</script>
