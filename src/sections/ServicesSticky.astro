@@ -52,8 +52,6 @@ const services = [
         class="btn-item-service text-[.8em]
          px-3 py-1
          rounded-2xl
-         
-         border-[0.1rem]
          font-light"
       >
         • Tu ventana a internet
@@ -61,7 +59,7 @@ const services = [
       <h2
         class="title-font text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 pt-5 font-bold text-(--color-brand-secundary)"
       >
-        Lo que tu <span class="gradiente-title-"> página</span> web necesita
+        Lo que tu página web necesita
       </h2>
 
       <!-- bg-(--color-brand-secundary) -->
@@ -88,7 +86,7 @@ const services = [
       {
         services.map((service) => {
           return (
-            <section class="flex flex-col gap-2 bg-[#D5D9DA10] text-(--color-brand-secundary) p-8 rounded-2xl">
+            <section class="flex flex-col gap-2 bg-white/5 text-(--color-brand-secundary) p-8 rounded-2xl">
               <span class=" text-4xl w-13 lg:w-10 xl:w-14 ">
                 <Icon
                   name={service.icon === "" ? "star" : `${service.icon}`}
@@ -119,11 +117,6 @@ const services = [
   }
   .btn-item-service {
     color: var(--color-text-primary);
-    border: 1px solid
-      color-mix(
-        in oklab,
-        var(--color-gray-900) 50%,
-        var(--color-brand-secundary)
-      );
+    background-color: rgb(255 255 255 / 0.06);
   }
 </style>

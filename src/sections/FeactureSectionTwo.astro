@@ -6,7 +6,7 @@ import Picture from "astro/components/Picture.astro";
 
 <section
     class="hero w-full min-h-120 md:items-center relative text-gray-600 body-font"
-    style={`background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.1) 30%, rgba(0,0,0,0.78) 70%), url(${bg2.src})`}
+    style={`background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.1) 30%, rgba(0,0,0,0.78) 70%), url(${bg2.src}); /* taste-skill-ignore: scrim neutro sobre foto */`}
 >
     <!-- Fondo con imagen y overlay -->
     <!-- <div class="absolute left-0 right-0">
@@ -41,7 +41,7 @@ import Picture from "astro/components/Picture.astro";
                 text-gray-100"
             >
                 Capacitador en <br />
-                <span class="gradiente-title-hero"> seguridad industrial </span>
+                seguridad industrial
             </h1>
             <p class="mb-8 leading-relaxed text-gray-200 md:text-[.9em]">
                 En RAEP Protegemos tu negocio con conocimientos prácticos y
@@ -57,7 +57,7 @@ import Picture from "astro/components/Picture.astro";
                 />
 
                 <a
-                    class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+                    class="ml-4 inline-flex text-gray-700 bg-gray-100 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
                     >Button</a
                 >
             </div>
@@ -80,27 +80,8 @@ import Picture from "astro/components/Picture.astro";
 
 <style>
     #overlay {
-        /* backdrop-filter: blur(5px); */
         padding: 20px;
         border-radius: 8px;
-    }
-
-    #logo-bg {
-        opacity: 0.7;
-        position: relative;
-        /* border: 1px solid red; */
-        padding: 40px;
-    }
-
-    #container-logo-bg::before {
-        content: "";
-        /* border: 1px solid red; */
-
-        backdrop-filter: blur(5px);
-
-        color: aqua;
-        position: absolute;
-        z-index: 10;
     }
 
     .hero {
@@ -115,21 +96,5 @@ import Picture from "astro/components/Picture.astro";
         align-items: center;
         justify-content: center;
         color: black;
-    }
-
-    .gradiente-title-hero {
-        --color-gradient: #f34503;
-        background-image: linear-gradient(
-            to right,
-            var(--color-brand-secundary),
-            var(--color-gradient)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .gradiente-title-hero {
-        color: #0090f7;
-        /* fallback */
     }
 </style>

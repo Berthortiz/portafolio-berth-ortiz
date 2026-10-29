@@ -8,7 +8,7 @@ const services = [
         icon: "web-icon",
         title: "Portafolio Web",
         description:
-            "Creación de sitios web informativos y portafolios profesionales 💼. Perfecto para mostrar tu trabajo.",
+            "Creación de sitios web informativos y portafolios profesionales. Perfecto para mostrar tu trabajo.",
     },
     {
         icon: "code-icon",
@@ -26,12 +26,8 @@ const services = [
 ---
 
 <section class="relative overflow-hidden lg:py-24 px-4">
-    <div
-        class="stardust absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-7deg] z-0 scale-x-[2.5] scale-y-[4.2] rounded-full mask-radial-gradient h-56 md:h-80 lg:h-96 w-full pointer-events-none opacity-80"
-    >
-    </div>
     <p
-        class="text-center text-xs tracking-widest text-[#59baff] uppercase mb-2 font-semibold"
+        class="text-center text-sm text-brand mb-2 font-semibold"
     >
         ¡Creamos la Páginas web que necesitas!
     </p>
@@ -50,7 +46,7 @@ const services = [
     >
         {
             services.map((service) => (
-                <div class="px-8 py-10 md:px-10 md:py-14 rounded-lg border border-zinc-500/20 backdrop-blur-3xl bg-zinc-500/5 flex flex-col items-center text-center gap-4 hover:border-zinc-500/40 transition-all duration-300 group">
+                <div class="px-8 py-10 md:px-10 md:py-14 rounded-lg bg-zinc-500/5 flex flex-col items-center text-center gap-4 hover:bg-zinc-500/10 transition-colors duration-300 group">
                     <span class="text-6xl mb-2 group-hover:scale-110 transition-transform duration-300">
                         <Icon
                             name={
@@ -86,55 +82,5 @@ const services = [
 </section>
 
 <style>
-    .mask-radial-gradient {
-        -webkit-mask-image: radial-gradient(
-            rgba(0, 0, 0, 0.8) 0%,
-            rgba(0, 0, 0, 0.79) 5.64%,
-            rgba(0, 0, 0, 0.761) 10.6%,
-            rgba(0, 0, 0, 0.717) 14.9%,
-            rgba(0, 0, 0, 0.66) 18.7%,
-            rgba(0, 0, 0, 0.593) 22.2%,
-            rgba(0, 0, 0, 0.518) 25.4%,
-            rgba(0, 0, 0, 0.44) 28.5%,
-            rgba(0, 0, 0, 0.36) 31.5%,
-            rgba(0, 0, 0, 0.282) 34.6%,
-            rgba(0, 0, 0, 0.207) 37.8%,
-            rgba(0, 0, 0, 0.14) 41.3%,
-            rgba(0, 0, 0, 0.083) 45.1%,
-            rgba(0, 0, 0, 0.039) 49.4%,
-            rgba(0, 0, 0, 0.01) 54.36%,
-            rgba(0, 0, 0, 0) 60%
-        );
-        mask-image: radial-gradient(
-            rgba(0, 0, 0, 0.8) 0%,
-            rgba(0, 0, 0, 0.79) 5.64%,
-            rgba(0, 0, 0, 0.761) 10.6%,
-            rgba(0, 0, 0, 0.717) 14.9%,
-            rgba(0, 0, 0, 0.66) 18.7%,
-            rgba(0, 0, 0, 0.593) 22.2%,
-            rgba(0, 0, 0, 0.518) 25.4%,
-            rgba(0, 0, 0, 0.44) 28.5%,
-            rgba(0, 0, 0, 0.36) 31.5%,
-            rgba(0, 0, 0, 0.282) 34.6%,
-            rgba(0, 0, 0, 0.207) 37.8%,
-            rgba(0, 0, 0, 0.14) 41.3%,
-            rgba(0, 0, 0, 0.083) 45.1%,
-            rgba(0, 0, 0, 0.039) 49.4%,
-            rgba(0, 0, 0, 0.01) 54.36%,
-            rgba(0, 0, 0, 0) 60%
-        );
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-    }
-
-    /* .stardust {
-        background: radial-gradient(
-            circle at center,
-            rgba(59, 130, 246, 0.6) 0%,
-            rgba(37, 99, 235, 0.3) 30%,
-            rgba(29, 78, 216, 0.1) 60%,
-            transparent 100%
-        );
-        filter: blur(20px);
-    } */
+</style>
 </style>

@@ -15,7 +15,7 @@ const {
 
 const tieneColor = bg !== "transparent";
 const estilo = tieneColor
-    ? `background-image: linear-gradient(90deg, var(--color-brand), var(--color-brand-two), #f441a5, var(--color-brand)); background-size: 400%;`
+    ? `background-image: linear-gradient(90deg, var(--color-brand), var(--color-brand-two), var(--color-brand)); background-size: 400%;` /* taste-skill-ignore: gradiente de marca, BRAND.md §2 */
     : `background-color:${bg} ;`;
 ---
 
@@ -52,7 +52,7 @@ const estilo = tieneColor
         bottom: -5px;
         left: -5px;
         z-index: -1;
-        background: linear-gradient(90deg, var(--color-brand), var(--color-brand-two), #f441a5, var(--color-brand));
+        background: linear-gradient(90deg, var(--color-brand), var(--color-brand-two), var(--color-brand)); /* taste-skill-ignore: gradiente de marca, BRAND.md §2 */
         background-size: 400%;
         border-radius: 9px;
         opacity: 0;

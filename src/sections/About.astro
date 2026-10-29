@@ -32,7 +32,7 @@ import ImgAbout from "../assets/img/pexels-arina-krasnikova-5950092.jpg";
                 mb-4
                 text-(--color-secundary)"
             >
-                Hola, soy <span class="gradiente-title-g">Berth Ortiz</span>,
+                Hola, soy Berth Ortiz,
                 desarrollador web.
             </h2>
 
@@ -78,37 +78,10 @@ import ImgAbout from "../assets/img/pexels-arina-krasnikova-5950092.jpg";
 
 <style>
     #overlay {
-        /* backdrop-filter: blur(5px); */
         padding: 20px;
         border-radius: 8px;
     }
-
-    #logo-bg {
-        opacity: 0.7;
-        position: relative;
-        /* border: 1px solid red; */
-        padding: 40px;
-    }
-
-    #container-logo-bg::before {
-        content: "";
-        /* border: 1px solid red; */
-
-        backdrop-filter: blur(5px);
-
-        color: aqua;
-        position: absolute;
-        z-index: 10;
-    }
-
     /* .hero {
-        background-image:
-            linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.8) 30%,
-                rgba(0, 0, 0, 0.1) 70%
-            ),
-            url("/images/bg-2.png");
         background-size: cover;
         background-position: center;
         height: fit-content;
@@ -117,20 +90,4 @@ import ImgAbout from "../assets/img/pexels-arina-krasnikova-5950092.jpg";
         justify-content: center;
         color: black;
     } */
-
-    .gradiente-title-hero {
-        --color-gradient: #f34503;
-        background-image: linear-gradient(
-            to right,
-            var(--color-brand-secundary),
-            var(--color-gradient)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .gradiente-title-hero {
-        color: #0090f7;
-        /* fallback */
-    }
 </style>

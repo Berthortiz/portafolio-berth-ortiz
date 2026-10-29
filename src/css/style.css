@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Tokens de marca (BRAND.md) — conectados a Tailwind v4.
+   Genera utilidades: bg-brand, text-brand, bg-surface, text-ink, font-display…
+   ========================================================================== */
+@theme {
+	/* Tipografía */
+	--font-display: "Sora", "Inter", sans-serif; /* titulares h1–h3 */
+	--font-sans: "Inter", sans-serif; /* texto, UI, formularios */
+
+	/* Paleta (roles de marca, sin colores nuevos) */
+	--color-brand: #008cff; /* acento / acción */
+	--color-brand-two: #03cff3; /* acento 2 (gradiente de marca) */
+	--color-surface: #e7effa; /* tarjetas y secciones claras */
+	--color-surface-two: #dce8f5; /* superficie clara secundaria */
+	--color-ink: #a5b4cb; /* texto sobre fondo oscuro */
+	--color-ink-strong: #ffffff; /* titulares sobre fondo oscuro */
+	--color-ink-dark: #09111f; /* texto sobre superficie clara */
+	--color-ground: #080e1c; /* fondo del sitio */
+	--color-brand-hover: #33a0ff; /* acento en hover (sobre oscuro) */
+}
+
 
 
 

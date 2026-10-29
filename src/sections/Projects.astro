@@ -161,29 +161,15 @@ const projects = [
 //         ],
 ---
 
-<picture
-  id="proyects"
-  class="lg:max-w-7xl mx-auto flex flex-col justify-center text-white px-6 py-18 lg:pt-16"
->
-  <!-- <h2 class="text-2xl font-black lg:pb-10 md:text-3xl lg:text-4xl text-center">
-    <span class="gradiente-title"> Proyectos</span>
-    Web que he creado
-  </h2> -->
-  <!-- <p class="text-center text-gray-400 pb-2 md:pb-2 lg:text-2xl lg:pb-18">
-    Páginas web que he creado para algunos de mis clientes
-  </p> -->
-
-  <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-  <!--?xml version="1.0" standalone="no"?-->
-  <!-- <img
-    class="self-center"
-    src="/portfolio-icon.png"
-    width="50"
-    height="50"
-    alt=""
-  /> -->
+<section id="proyects" class="w-full text-white">
+  <!-- Contenido centrado (la atmósfera de profundidad es la capa global
+       fija del layout, BRAND.md §6; esta sección no pinta fondo propio para
+       que las luces ambientales de la marca se vean a través). -->
+  <div
+    class="mx-auto flex max-w-7xl flex-col justify-center px-6 py-18 lg:pt-16"
+  >
   <p
-    class="text-center text-1xl tracking-widest text-[#59baff] uppercase pt-2.5 pb-2 font-semibold self-center"
+    class="text-center text-1xl tracking-widest text-brand uppercase pt-2.5 pb-2 font-semibold self-center"
   >
     Portafolio
   </p>
@@ -202,7 +188,7 @@ const projects = [
   <article class="grid-projects">
     {
       projects.map((item) => (
-        <section class="flex flex-col pb-12 lg:w-full lg:gap-8 border border-zinc-500/20 backdrop-blur-3xl bg-zinc-500/5 ">
+        <section class="flex flex-col pb-12 lg:w-full lg:gap-8 bg-zinc-500/5">
           <div class="w-full flex justify-center">
             <Picture
               src={item.image}
@@ -244,6 +230,7 @@ const projects = [
       ))
     }
   </article>
+  </div>
 
   <style>
     .btn-project:first-child {
@@ -257,23 +244,7 @@ const projects = [
     }
 
     .btn-project:nth-child(2):hover {
-      box-shadow: 0 1px 0 0 rgb(255, 255, 255);
-    }
-
-    .gradiente-title {
-      --color-gradient: #03cff3;
-      background-image: linear-gradient(
-        to right,
-        #0475ff,
-        var(--color-gradient)
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .gradiente-title {
-      color: #0090f7;
-      /* fallback */
+      background: rgb(255 255 255 / 0.08);
     }
 
     .grid-projects {
@@ -282,10 +253,9 @@ const projects = [
       gap: 3em;
 
       & section {
-        /* border: 1px solid var(--color-text-primary); */
         padding: 1.4em;
         border-radius: 14px;
-        background-color:;
+        background-color: rgb(255 255 255 / 0.04);
       }
     }
 
@@ -314,4 +284,4 @@ const projects = [
       /* Tus estilos aquí */
     }
   </style>
-</picture>
+</section>

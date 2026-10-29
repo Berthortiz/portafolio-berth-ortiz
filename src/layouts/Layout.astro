@@ -1,24 +1,28 @@
 ---
 import Header from "../components/Header.astro";
 import SEO from "../components/SEO.astro";
-import logo from "../assets/img/logo-berth.svg";
 import Footer from "../sections/Footer.astro";
+import { SITE_CONFIG } from "../consts/site-config";
 import "../css/style.css";
 
 interface Props {
-	title: string;
+	title?: string;
 	description?: string;
-	image?: string;
 	canonical?: string;
-	type?: string;
+	robots?: string;
+	ogImage?: string;
+	ogImageAlt?: string;
+	ogType?: "website" | "article" | "profile";
 }
 
 const {
-	title = "Berth Ortiz",
-	description = "Desarrollo de Páginas Web para Negocios y Empresas | Berth Ortiz",
-	image,
+	title = SITE_CONFIG.title,
+	description = SITE_CONFIG.description,
 	canonical,
-	type,
+	robots,
+	ogImage,
+	ogImageAlt,
+	ogType,
 } = Astro.props;
 ---
 
@@ -26,31 +30,67 @@ const {
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{
+			/* Color de fondo crítico inline: la hoja completa llega tarde al
+			    <head> y sin esto se ve un flash blanco en el primer paint.
+			    Va SOLO en <html>; el <body> debe quedar transparente porque
+			    la atmósfera fija (z -1) pinta entre el canvas de html y el
+			    contenido del body. */
+		}
+		<style is:inline>
+			html {
+				background: #080e1c;
+			}
+		</style>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- taste-skill-ignore: Inter + Sora son la tipografía de marca, BRAND.md §3 -->
 		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Sora:wght@600..800&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="icon" type="image/svg+xml" href={logo.src} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/portfolio-icon.png" />
 		<meta name="generator" content={Astro.generator} />
+		<meta
+			name="theme-color"
+			content={SITE_CONFIG.themeColor}
+		/>
+		<meta name="author" content={SITE_CONFIG.author} />
 		<SEO
 			title={title}
 			description={description}
-			image={image}
 			canonical={canonical}
-			type={type}
+			robots={robots}
+			ogImage={ogImage}
+			ogImageAlt={ogImageAlt}
+			ogType={ogType}
 		/>
 	</head>
 	<body>
+		<!-- Atmósfera global: primer hijo del body, capa fija detrás de todo
+		     el contenido (ver BRAND.md §6). -->
+		<div class="atmosphere" aria-hidden="true">
+			<div class="atmo-orb atmo-orb-blue"></div>
+			<div class="atmo-orb atmo-orb-cyan"></div>
+			<div class="atmo-orb atmo-orb-deep"></div>
+			<div class="atmo-noise"></div>
+		</div>
+		<a
+			href="#main-content"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:outline-none"
+		>
+			Saltar al contenido principal
+		</a>
 		<Header />
-		<slot />
+		<main id="main-content">
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>
 
-<script></script>
 <style is:global>
 	:root {
 		--color-brand: #008cff; /* color principal de la marca */
@@ -63,39 +103,113 @@ const {
 		--color-text-black: #09111f;
 
 		--color-bg: #080e1c; /* fondo */
+
+		/* Tipografía de marca (BRAND.md §Tipografía) */
+		--font-display: "Sora", "Inter", sans-serif; /* titulares */
+		--font-sans: "Inter", sans-serif; /* texto, UI, formularios */
+	}
+
+	html {
+		background-color: var(--color-bg); /* el fondo opaco vive en html */
+	}
+
+	body {
+		background-color: transparent; /* atmósfera fija visible (BRAND.md §6) */
 	}
 
 	html,
 	body {
 		margin: 0;
 		width: 100%;
-		background-color: var(--color-bg);
 		/* min-height: 200vh; */
-		font-family: "Inter", sans-serif;
+		font-family: var(--font-sans);
 		font-optical-sizing: auto;
 		transition: width 1s ease;
 
 		/* scrollbar-gutter: stable; */
 		/* overflow: hidden; */
 	}
+
+	/* ── Atmósfera global (device de marca, BRAND.md §6) ─────────────────
+	   Capa fija a todo el viewport, detrás de todo el contenido. Se funde
+	   continua entre secciones: el scroll nunca la corta (position: fixed).
+	   El body NO debe llevar fondo opaco o la taparía. Sin interacción,
+	   aria-hidden. Orbes con blur fuerte y translate3d para que el
+	   compositor los congele como capas de GPU (sin tirones al scrollear). */
+	.atmosphere {
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		overflow: clip;
+		pointer-events: none;
+	}
+
+	.atmo-orb {
+		position: absolute;
+		border-radius: 9999px;
+		transform: translate3d(0, 0, 0); /* capa GPU estable */
+	}
+
+	.atmo-orb-blue {
+		background: radial-gradient( /* taste-skill-ignore: luz ambiental de marca (BRAND.md §6) */
+			circle at center,
+			rgb(0 140 255 / 0.16) 0%,
+			rgb(0 140 255 / 0.06) 42%,
+			transparent 72%
+		);
+		width: clamp(30rem, 80vw, 58rem);
+		aspect-ratio: 1;
+		top: -12rem;
+		left: -14rem;
+		filter: blur(110px);
+	}
+
+	.atmo-orb-cyan {
+		background: radial-gradient( /* taste-skill-ignore: luz ambiental de marca (BRAND.md §6) */
+			circle at center,
+			rgb(3 207 243 / 0.13) 0%,
+			rgb(3 207 243 / 0.05) 42%,
+			transparent 72%
+		);
+		width: clamp(20rem, 55vw, 38rem);
+		aspect-ratio: 1;
+		top: 40%;
+		right: -12rem;
+		filter: blur(90px);
+	}
+
+	.atmo-orb-deep {
+		background: radial-gradient( /* taste-skill-ignore: luz ambiental de marca (BRAND.md §6) */
+			circle at center,
+			rgb(0 140 255 / 0.12) 0%,
+			rgb(0 140 255 / 0.04) 44%,
+			transparent 73%
+		);
+		width: clamp(24rem, 70vw, 48rem);
+		aspect-ratio: 1;
+		bottom: -16rem;
+		left: 30%;
+		filter: blur(120px);
+	}
+
+	/* Grano de ruido sobre el gradiente: elimina el banding de los degradados
+	   en casi-negro y unifica la paleta (textura SVG feTurbulence en tile). */
+	.atmo-noise {
+		position: absolute;
+		inset: 0;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); /* taste-skill-ignore: grano anti-banding, no es imagen decorativa */
+		background-size: 160px 160px;
+		opacity: 0.035;
+	}
 	h1,
 	h2,
 	h3,
 	h4 {
-		font-family: "Inter", sans-serif;
+		font-family: var(--font-display);
 		font-optical-sizing: auto;
 		font-style: normal;
+		letter-spacing: -0.02em;
+		line-height: 1.05;
 		color: #ffffff;
-	}
-
-	.gradiente-title-g {
-		color: var(--color-brand);
-		background-image: linear-gradient(
-			to right,
-			var(--color-brand),
-			var(--color-brand-two)
-		);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
 	}
 </style>

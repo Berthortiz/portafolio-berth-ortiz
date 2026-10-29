@@ -15,7 +15,7 @@ const description =
         <div class="swiper-wrapper">
             <div class="swiper-slide bg-amber-400">Slide 1</div>
             <div class="swiper-slide bg-emerald-500">Slide 2</div>
-            <div class="swiper-slide bg-indigo-700">Slide 3</div>
+            <div class="swiper-slide bg-(--color-brand)">Slide 3</div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -63,11 +63,10 @@ const description =
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
+            background: var(--color-surface);
             border-radius: 12px;
+            color: var(--color-text-black);
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .marqueeSwiper :global(.swiper-wrapper) {

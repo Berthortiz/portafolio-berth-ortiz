@@ -1,40 +1,58 @@
 ---
 import SectionTitle from "../components/SectionTitle.astro";
+import { serializeJsonLd } from "../utils/serialize-json-ld";
 
 const faqs = [
     {
-        question: "",
-        answer: "",
+        question: "¿Cuánto cuesta una página web?",
+        answer: "Depende del alcance: una landing para captar clientes no cuesta lo mismo que un sitio con varias secciones o tienda en línea. Te presento una propuesta con precio cerrado tras conocer tu negocio y objetivos, sin sorpresas.",
     },
     {
-        question: "",
-        answer: "",
+        question: "¿Cuánto tiempo tarda el desarrollo?",
+        answer: "Una página web profesional está lista en 2 a 6 semanas según las secciones, los textos y las revisiones. Antes de empezar acordamos un calendario con fechas de entrega claras.",
     },
     {
-        question: "",
-        answer: "",
+        question: "¿Mi página web funcionará en celulares?",
+        answer: "Sí. Todos los sitios se construyen con diseño responsive: se adaptan automáticamente a celulares, tablets y computadoras, priorizando la velocidad de carga en cada dispositivo.",
     },
     {
-        question: "",
-        answer: "",
+        question: "¿Puedo actualizar el contenido yo mismo?",
+        answer: "Sí. Al entregar el proyecto te explico cómo hacer cambios básicos y, si lo prefieres, me encargo de las actualizaciones por ti con un plan de mantenimiento.",
     },
     {
-        question: "",
-        answer: "",
+        question: "¿Hay soporte después del lanzamiento?",
+        answer: "Sí. Todo proyecto incluye soporte post-lanzamiento para corregir detalles y resolver dudas. También existen planes de mantenimiento mensual para crear contenido nuevo y mejoras continuas.",
     },
 ];
+
+// Solo se emiten las FAQs completas: Google exige que lo marcado con
+// FAQPage coincida exactamente con lo visible en la página.
+const visibleFaqs = faqs.filter((faq) => faq.question && faq.answer);
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: visibleFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+        },
+    })),
+};
 ---
 
 <section class="max-w-4xl rounded-2xl px-5 py-36 md:mx-auto">
     <SectionTitle title="Preguntas Frecuentes" class="mb-10" />
     <ul>
         {
-            faqs.map((faq) => (
+            visibleFaqs.map((faq) => (
                 <li class="mb-4">
-                    <details class="group rounded-xl border border-transparent bg-zinc-800/50 transition-all duration-300 hover:border-[#00d7c9] hover:shadow-xl">
-                        <summary class="focus-visible:ring-[#00d7c9]-400 duration-600 flex cursor-pointer select-none items-center gap-3 px-6 py-4 text-sm font-bold text-[red] outline-none transition-all focus-visible:ring-2 group-open:text-pink-300 lg:text-lg">
+                    <details class="group rounded-xl bg-zinc-800/50 transition-colors duration-300 hover:bg-zinc-700/50">
+                        <summary class="focus-visible:ring-(--color-brand) flex cursor-pointer select-none items-center gap-3 px-6 py-4 text-sm font-bold text-white outline-none transition-colors focus-visible:ring-2 group-open:text-(--color-brand-two) lg:text-lg">
                             <svg
-                                class="mr-1 inline-block h-7 w-7 shrink-0 text-[#00d7c9] transition-transform duration-300 group-open:rotate-180 lg:h-5 lg:w-5"
+                                class="mr-1 inline-block h-7 w-7 shrink-0 text-brand transition-transform duration-300 group-open:rotate-180 lg:h-5 lg:w-5"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="3"
@@ -45,7 +63,7 @@ const faqs = [
                             </svg>
                             {faq.question}
                         </summary>
-                        <div class="animate-fadeInFaq px-8 pb-4 pt-1 font-sans text-base leading-relaxed text-white opacity-95 transition-all duration-300 [text-transform:none]">
+                        <div class="animate-fadeInFaq px-8 pb-4 pt-1 font-sans text-base leading-relaxed text-white opacity-95">
                             <p set:html={faq.answer} />
                         </div>
                     </details>
@@ -53,6 +71,11 @@ const faqs = [
             ))
         }
     </ul>
+    <script
+        type="application/ld+json"
+        is:inline
+        set:html={serializeJsonLd(faqSchema)}
+    />
     {/* Animació*/}
     <style>
         @keyframes fadeInFaq {

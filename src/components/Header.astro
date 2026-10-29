@@ -70,6 +70,7 @@ const links = [
         </button>
     </div>
 
+    <!-- taste-skill-ignore: única barra fija permitida (overlay del menú móvil) -->
     <nav
         id="mobile-menu"
         class="w-full h-dvh flex fixed inset-0 bg-slate-900/80 backdrop-blur-2xl flex-col p-6 gap-6 z-50 overflow-y-auto"
@@ -110,7 +111,7 @@ const links = [
             {
                 links.map((link) => (
                     <a
-                        class="text-blue-50 w-full block py-3 border-b border-slate-800/60"
+                        class="text-blue-50 w-full block py-3"
                         href={link.href}
                     >
                         {link.label}
@@ -247,7 +248,7 @@ const links = [
         }
         #mobile-menu {
             transform: translateX(-100%);
-            transition: all 0.4s ease-out;
+            transition: transform 0.4s ease-out;
         }
         .open {
             transform: translateX(0) !important;

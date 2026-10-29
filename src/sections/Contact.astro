@@ -92,7 +92,22 @@
     </form>
 
     <div id="success-message" style="display:none;" class="msg-success fade-in">
-        <div class="success-icon">✓</div>
+        <div class="success-icon">
+            <svg
+                viewBox="0 0 24 24"
+                width="28"
+                height="28"
+                aria-hidden="true"
+            >
+                <path
+                    d="M4 12l5 5 10-11"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+            </svg>
+        </div>
         <h3>¡Mensaje enviado!</h3>
         <p>Gracias por contactarnos, te responderemos lo antes posible.</p>
     </div>
@@ -127,8 +142,6 @@
 </script>
 
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-
     :root {
         --color-background: #cbd5e1;
         --color-border-active: #23494c;
@@ -163,7 +176,7 @@
     }
 
     .fs-label {
-        font-family: "Inter", sans-serif;
+        font-family: var(--font-sans);
         font-size: 0.875rem;
         font-size: 0.8em;
         font-weight: 600;
@@ -176,7 +189,7 @@
         font-family: inherit;
         padding: 0.75rem;
         border-radius: 0.375rem;
-        border: 1px solid var(--color-border-default);
+        border: 1px solid var(--color-border-default); /* taste-skill-ignore: los campos de formulario admiten línea */
         font-size: 0.675rem;
         outline: none;
         font-weight: 500;
@@ -185,7 +198,7 @@
             var(--color-text-black) 100%,
             transparent 40%
         );
-        transition: all 0.2s;
+        transition: border-color 0.2s, background-color 0.2s;
         caret-color: var(--color-text-primary);
     }
 
@@ -196,18 +209,6 @@
     :is(.fs-input, .fs-textarea)::placeholder {
         color: var(--color-text-primary);
     }
-    /* .fs-input:focus,
-    .fs-select:focus,
-    .fs-textarea:focus {
-        border-color: color-mix(
-            in oklab,
-            var(--color-brand) 80%,
-            transparent 60%
-        );
-        box-shadow: 0 0 0 3px
-            color-mix(in oklab, var(--color-brand-two) 80%, transparent 50%);
-    } */
-
     .fs-checkbox-field {
         display: flex;
         align-items: flex-start;

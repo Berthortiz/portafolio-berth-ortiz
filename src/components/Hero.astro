@@ -10,6 +10,7 @@ import Picture from "astro/components/Picture.astro";
 </script>
 
 <section class="hero w-full md:items-center flex flex-col justify-between relative text-gray-600 body-font" data-hero>
+    <div class="hero-grid" aria-hidden="true"></div>
     <!-- Fondo con imagen y overlay -->
     <!-- <div class="absolute left-0 right-0">
         <img src={bgHeroImg.src} alt="Fondo hero" class="w-full" />
@@ -89,33 +90,14 @@ import Picture from "astro/components/Picture.astro";
     }
 
     #overlay {
-        backdrop-filter: blur(5px);
         padding: 20px;
         border-radius: 8px;
-    }
-
-    #logo-bg {
-        opacity: 0.7;
-        position: relative;
-        /* border: 1px solid red; */
-        padding: 40px;
-    }
-
-    #container-logo-bg::before {
-        content: "";
-        /* border: 1px solid red; */
-
-        backdrop-filter: blur(5px);
-
-        color: aqua;
-        position: absolute;
-        z-index: 10;
     }
 
     .hero {
         --bg-transparent: 0.78;
         background-image:
-            linear-gradient(
+            linear-gradient( /* taste-skill-ignore: scrim neutro bajo texto sobre foto, permite la skill */
                 rgba(0, 0, 0, var(--bg-transparent)),
                 rgba(0, 0, 0, var(--bg-transparent))
             )
@@ -128,14 +110,45 @@ import Picture from "astro/components/Picture.astro";
         color: black;
     }
 
+    /* Retícula sutil del hero: solo textura, nunca compite con el titular.
+       Líneas de 1px al 5% de alfa, celda 48px, desvanecida hacia el borde
+       inferior (patrón dev: Vercel/Tailwind). Brand device documentado BRAND.md §6. */
+    .hero-grid {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient( /* taste-skill-ignore: retícula sutil, textura de marca del hero (BRAND.md §6) */
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 1px
+            ),
+            linear-gradient( /* taste-skill-ignore: retícula sutil, textura de marca del hero (BRAND.md §6) */
+                90deg,
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 1px
+            );
+        background-size: 48px 48px;
+        mask-image: linear-gradient( /* taste-skill-ignore: máscara de desvanecido, no es relleno */
+            to bottom,
+            black 0%,
+            transparent 88%
+        );
+        -webkit-mask-image: linear-gradient( /* taste-skill-ignore: máscara de desvanecido (Safari), no es relleno */
+            to bottom,
+            black 0%,
+            transparent 88%
+        );
+    }
+
     .gradiente-title-hero {
         --color-gradient: #03cff3;
-        background-image: linear-gradient(
+        background-image: linear-gradient( /* taste-skill-ignore: gradiente de marca, BRAND.md §2 */
             to right,
             var(--color-brand),
             var(--color-gradient)
         );
-        -webkit-background-clip: text;
+        -webkit-background-clip: text; /* taste-skill-ignore: gradiente de marca, BRAND.md §2 */
         -webkit-text-fill-color: transparent;
         will-change: transform, opacity;
     }
@@ -184,7 +197,7 @@ import Picture from "astro/components/Picture.astro";
 
                 if (c1 && c2 && palabras.length) {
                     palabras.forEach((w) => {
-                        w.style.backgroundImage = `linear-gradient(90deg, ${c1}, ${c2}, ${c1})`;
+                        w.style.backgroundImage = `linear-gradient(90deg, ${c1}, ${c2}, ${c1})`; // taste-skill-ignore: animación del gradiente de marca, BRAND.md §2
                         w.style.backgroundSize = "400% 100%";
                         w.style.webkitBackgroundClip = "text";
                         w.style.color = "transparent";
