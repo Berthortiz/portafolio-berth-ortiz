@@ -1,0 +1,118 @@
+---
+/* ─────────────────────────────────────────────────────────────────────────────
+   Atmosphere.astro — Fondo con gradiente de marca (orbes ambientales)
+   ─────────────────────────────────────────────────────────────────────────────
+   COMPONENTE PORTABLE · copia aislada de la atmósfera global de Layout.astro.
+   Todo su CSS está scoped en este archivo: no depende del CSS global ni toca
+   nada de la web de origen. Puedes copiar este archivo tal cual a otra web.
+
+   ── Cómo integrarlo en otra web hecha con Astro ──────────────────────────────
+   1. Copia este archivo a `src/components/Atmosphere.astro` de la web destino.
+
+   2. Impórtalo y colócalo justo después de abrir <body> en el Layout principal:
+
+        ---
+        import Atmosphere from "@/components/Atmosphere.astro";
+        ---
+        <html>
+          <body>
+            <Atmosphere />
+            <slot />
+          </body>
+        </html>
+
+   3. El body NO debe llevar fondo opaco encima (o hazlo transparente):
+      el componente pinta con z-index:-1, detrás de todo el contenido.
+      Fondo base del sitio (equivalente de --color-ground):
+
+        :root { --color-ground: #080e1c; }
+        body { background-color: var(--color-ground); }
+
+   4. Opcional — tokens de marca. Los orbes leen las variables CSS de marca
+      con valores por defecto; si tu web ya las define, se integrarán solas,
+      y si no, se usan estas. Defínelas en tu CSS global (o en el @theme de
+      Tailwind v4) para re-maquillar los colores sin editar el componente:
+
+        :root {
+          --color-brand: #008cff;     /* acento 1 */
+          --color-brand-two: #03cff3; /* acento 2 */
+        }
+
+   5. No requiere JS. Es decorativo: aria-hidden y pointer-events:none.
+   ─────────────────────────────────────────────────────────────────────────────
+---
+<div class="atmosphere" aria-hidden="true">
+	<div class="atmo-orb atmo-orb-blue"></div>
+	<div class="atmo-orb atmo-orb-cyan"></div>
+	<div class="atmo-orb atmo-orb-deep"></div>
+	<div class="atmo-noise"></div>
+</div>
+
+<style>
+	/* ── Atmósfera de marca ────────────────────────────────────────────── */
+	.atmosphere {
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		overflow: clip;
+		pointer-events: none;
+	}
+
+	.atmo-orb {
+		position: absolute;
+		border-radius: 9999px;
+		transform: translate3d(0, 0, 0); /* capa GPU estable */
+	}
+
+	.atmo-orb-blue {
+		background: radial-gradient(
+			circle at center,
+			color-mix(in srgb, var(--color-brand, #008cff) 16%, transparent) 0%,
+			color-mix(in srgb, var(--color-brand, #008cff) 6%, transparent) 42%,
+			transparent 72%
+		);
+		width: clamp(30rem, 80vw, 58rem);
+		aspect-ratio: 1;
+		top: -12rem;
+		left: -14rem;
+		filter: blur(110px);
+	}
+
+	.atmo-orb-cyan {
+		background: radial-gradient(
+			circle at center,
+			color-mix(in srgb, var(--color-brand-two, #03cff3) 13%, transparent) 0%,
+			color-mix(in srgb, var(--color-brand-two, #03cff3) 5%, transparent) 42%,
+			transparent 72%
+		);
+		width: clamp(20rem, 55vw, 38rem);
+		aspect-ratio: 1;
+		top: 40%;
+		right: -12rem;
+		filter: blur(90px);
+	}
+
+	.atmo-orb-deep {
+		background: radial-gradient(
+			circle at center,
+			color-mix(in srgb, var(--color-brand, #008cff) 12%, transparent) 0%,
+			color-mix(in srgb, var(--color-brand, #008cff) 4%, transparent) 44%,
+			transparent 73%
+		);
+		width: clamp(24rem, 70vw, 48rem);
+		aspect-ratio: 1;
+		bottom: -16rem;
+		left: 30%;
+		filter: blur(120px);
+	}
+
+	/* Grano de ruido sobre el gradiente: elimina el banding de los degradados
+	   en casi-negro y unifica la paleta (textura SVG feTurbulence en tile). */
+	.atmo-noise {
+		position: absolute;
+		inset: 0;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+		background-size: 160px 160px;
+		opacity: 0.035;
+	}
+</style>

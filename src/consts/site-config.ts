@@ -12,10 +12,10 @@ export const SITE_CONFIG = {
 		"Creamos sitios optimizados, rápidos y diseñados para convertir visitas en ventas. Desarrollo de páginas web para negocios y empresas.",
 	siteUrl: "https://berth-ortiz.pages.dev",
 
-	/** Imagen Open Graph por defecto (1200×630, en `public/`). */
+	/** Imagen Open Graph (en `public/`). */
 	ogImage: "/berth-portada.png",
-	ogImageWidth: 1200,
-	ogImageHeight: 630,
+	ogImageWidth: 1662,
+	ogImageHeight: 891,
 	ogImageAlt: "Berth Ortiz — Desarrollo de páginas web para negocios y empresas",
 
 	ogLocale: "es_ES",
